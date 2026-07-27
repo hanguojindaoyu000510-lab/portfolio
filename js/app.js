@@ -1,9 +1,18 @@
 /**
  * KIM DOWOOK AI Portfolio - 메인 애플리케이션 진입점 (app.js)
  * 메인 뷰와 전용 관리자 대시보드 뷰(AdminPage) 간의 상태 및 렌더링 관리
+ * Supabase 클라우드 데이터베이스 동기화 지원
  */
 
-import { getPortfolioData, savePortfolioData } from "./data/initialData.js";
+import {
+  getPortfolioData,
+  savePortfolioData,
+  fetchPortfolioDataFromSupabase,
+  saveProfileToSupabase,
+  addProjectToSupabase,
+  updateProjectInSupabase,
+  deleteProjectFromSupabase
+} from "./data/initialData.js";
 import { renderHeader } from "./components/Header.js";
 import { renderHero } from "./components/Hero.js";
 import { renderBioSection } from "./components/BioSection.js";
@@ -135,36 +144,43 @@ function openAdminLoginModal() {
 /**
  * 자기소개 프로필 정보 저장 핸들러
  */
-function handleSaveProfile(updatedProfile) {
+async function handleSaveProfile(updatedProfile) {
   state.data.profile = updatedProfile;
   savePortfolioData(state.data);
+  await saveProfileToSupabase(updatedProfile);
+  renderApp();
 }
 
 /**
  * 신규 프로젝트 추가 핸들러
  */
-function handleAddProject(newProject) {
+async function handleAddProject(newProject) {
+  await addProjectToSupabase(newProject);
   state.data.projects.unshift(newProject);
   savePortfolioData(state.data);
+  renderApp();
 }
 
 /**
  * 기존 프로젝트 수정 핸들러
  */
-function handleUpdateProject(updatedProject) {
+async function handleUpdateProject(updatedProject) {
   const index = state.data.projects.findIndex(p => p.id === updatedProject.id);
   if (index !== -1) {
     state.data.projects[index] = updatedProject;
     savePortfolioData(state.data);
   }
+  await updateProjectInSupabase(updatedProject);
+  renderApp();
 }
 
 /**
  * 프로젝트 삭제 핸들러
  */
-function handleDeleteProject(id) {
+async function handleDeleteProject(id) {
   state.data.projects = state.data.projects.filter(p => p.id !== id);
   savePortfolioData(state.data);
+  await deleteProjectFromSupabase(id);
   renderApp();
 }
 
@@ -174,8 +190,8 @@ function handleDeleteProject(id) {
 function handleOpenAddProjectModal() {
   let modal = document.getElementById("add-project-modal");
   if (!modal) {
-    modal = renderAddProjectModal((newProject) => {
-      handleAddProject(newProject);
+    modal = renderAddProjectModal(async (newProject) => {
+      await handleAddProject(newProject);
       alert("🚀 신규 프로젝트가 성공적으로 등록되었습니다!");
       renderApp();
     });
@@ -220,5 +236,12 @@ function handleResetData() {
   renderApp();
 }
 
-// 최초 애플리케이션 실행
-document.addEventListener("DOMContentLoaded", renderApp);
+// 최초 애플리케이션 실행 및 Supabase 데이터 비동기 동기화
+document.addEventListener("DOMContentLoaded", async () => {
+  renderApp();
+  const remoteData = await fetchPortfolioDataFromSupabase();
+  if (remoteData) {
+    state.data = remoteData;
+    renderApp();
+  }
+});

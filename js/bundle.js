@@ -103,6 +103,120 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
 
+  // 3-B. Supabase 데이터베이스 연동 모듈
+  const SUPABASE_URL = "https://bdurtdvmuaskcryqzzez.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_M8nJwJwqRT6wWmhWDR0E7w_JYxWG0l_";
+  let supabaseClient = null;
+
+  function getSupabaseClient() {
+    if (supabaseClient) return supabaseClient;
+    if (typeof window !== "undefined" && window.supabase && window.supabase.createClient) {
+      try {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      } catch (e) {
+        console.warn("Supabase 초기화 경고:", e);
+      }
+    }
+    return supabaseClient;
+  }
+
+  async function fetchPortfolioDataFromSupabase() {
+    const client = getSupabaseClient();
+    if (!client) return null;
+    try {
+      const { data: profileRows, error: profileErr } = await client.from("profiles").select("*").limit(1);
+      const { data: projectRows, error: projectErr } = await client.from("projects").select("*").order("id", { ascending: true });
+      if (profileErr || projectErr) return null;
+
+      const result = {
+        profile: { ...defaultData.profile },
+        projects: defaultData.projects
+      };
+      if (profileRows && profileRows.length > 0) {
+        const p = profileRows[0];
+        result.profile = {
+          name: p.name || defaultData.profile.name,
+          headline: p.headline || defaultData.profile.headline,
+          bio: p.bio || defaultData.profile.bio,
+          interests: Array.isArray(p.interests) ? p.interests : defaultData.profile.interests,
+          techStack: Array.isArray(p.tech_stack) ? p.tech_stack : defaultData.profile.techStack
+        };
+      }
+      if (projectRows && projectRows.length > 0) {
+        result.projects = projectRows.map(row => ({
+          id: row.id,
+          title: row.title,
+          description: row.description,
+          tags: Array.isArray(row.tags) ? row.tags : [],
+          demoUrl: row.demo_url || "",
+          githubUrl: row.github_url || "",
+          imageUrl: row.image_url || ""
+        }));
+      }
+      savePortfolioData(result);
+      return result;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function saveProfileToSupabase(profile) {
+    const client = getSupabaseClient();
+    if (!client) return;
+    try {
+      await client.from("profiles").upsert({
+        id: 1,
+        name: profile.name,
+        headline: profile.headline,
+        bio: profile.bio,
+        interests: profile.interests,
+        tech_stack: profile.techStack,
+        updated_at: new Date().toISOString()
+      }, { onConflict: "id" });
+    } catch (e) {}
+  }
+
+  async function addProjectToSupabase(newProject) {
+    const client = getSupabaseClient();
+    if (!client) return;
+    try {
+      const { data } = await client.from("projects").insert([{
+        title: newProject.title,
+        description: newProject.description,
+        tags: newProject.tags,
+        demo_url: newProject.demoUrl,
+        github_url: newProject.githubUrl,
+        image_url: newProject.imageUrl
+      }]).select();
+      if (data && data.length > 0) {
+        newProject.id = data[0].id;
+      }
+    } catch (e) {}
+  }
+
+  async function updateProjectInSupabase(updatedProject) {
+    const client = getSupabaseClient();
+    if (!client) return;
+    try {
+      await client.from("projects").update({
+        title: updatedProject.title,
+        description: updatedProject.description,
+        tags: updatedProject.tags,
+        demo_url: updatedProject.demoUrl,
+        github_url: updatedProject.githubUrl,
+        image_url: updatedProject.imageUrl
+      }).eq("id", updatedProject.id);
+    } catch (e) {}
+  }
+
+  async function deleteProjectFromSupabase(id) {
+    const client = getSupabaseClient();
+    if (!client) return;
+    try {
+      await client.from("projects").delete().eq("id", id);
+    } catch (e) {}
+  }
+
   // 4. 애플리케이션 상태 (State)
   let state = {
     data: getPortfolioData(),
@@ -572,21 +686,22 @@
   function bindAdminEvents(container) {
     const bioForm = container.querySelector("#admin-bio-form");
     if (bioForm) {
-      bioForm.addEventListener("submit", (e) => {
+      bioForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         state.data.profile.name = container.querySelector("#bio-name").value;
         state.data.profile.headline = container.querySelector("#bio-headline").value;
         state.data.profile.interests = parseTags(container.querySelector("#bio-tags").value);
         state.data.profile.bio = container.querySelector("#bio-text").value;
         savePortfolioData(state.data);
-        alert("✨ 자기소개 수정사항이 로컬 스토리지에 정상 반영되었습니다!");
+        await saveProfileToSupabase(state.data.profile);
+        alert("✨ 자기소개 수정사항이 로컬 및 Supabase DB에 반영되었습니다!");
         renderApp();
       });
     }
 
     const projForm = container.querySelector("#admin-project-form");
     if (projForm) {
-      projForm.addEventListener("submit", (e) => {
+      projForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const title = container.querySelector("#proj-title").value;
         const description = container.querySelector("#proj-desc").value;
@@ -598,13 +713,16 @@
         if (editingProjId) {
           const idx = state.data.projects.findIndex(p => p.id === editingProjId);
           if (idx !== -1) {
-            state.data.projects[idx] = { id: editingProjId, title, description, tags, demoUrl, githubUrl, imageUrl };
+            const updatedP = { id: editingProjId, title, description, tags, demoUrl, githubUrl, imageUrl };
+            state.data.projects[idx] = updatedP;
             savePortfolioData(state.data);
+            await updateProjectInSupabase(updatedP);
             alert("✏️ 프로젝트 수정사항이 저장되었습니다!");
           }
           editingProjId = null;
         } else {
           const newP = { id: Date.now(), title, description, tags, demoUrl, githubUrl, imageUrl };
+          await addProjectToSupabase(newP);
           state.data.projects.unshift(newP);
           savePortfolioData(state.data);
           alert("🚀 신규 AI 프로젝트가 등록되었습니다!");
@@ -636,6 +754,7 @@
         if (confirm("정말 이 프로젝트를 삭제하시겠습니까?")) {
           state.data.projects = state.data.projects.filter(p => p.id !== id);
           savePortfolioData(state.data);
+          deleteProjectFromSupabase(id);
           if (editingProjId === id) editingProjId = null;
           renderApp();
         }
@@ -693,5 +812,12 @@
     appRoot.appendChild(footer);
   }
 
-  document.addEventListener("DOMContentLoaded", renderApp);
+  document.addEventListener("DOMContentLoaded", async () => {
+    renderApp();
+    const remoteData = await fetchPortfolioDataFromSupabase();
+    if (remoteData) {
+      state.data = remoteData;
+      renderApp();
+    }
+  });
 })();
