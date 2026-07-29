@@ -1,5 +1,6 @@
 /* ==========================================================================
    KIM DOWOOK AI Portfolio - 글로벌 베이스 및 레이아웃 스타일 (global.css)
+   시원하고 귀여운 스카이블루 & 민트 그린 고양이 AI 테마
    ========================================================================== */
 
 /* 1. 기본 리셋 및 전역 설정 */
@@ -21,10 +22,11 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
-  /* 배경 그래디언트 번짐 이펙트 */
+  /* 워터컬러 쿨 스카이블루 & 민트 그린 오르브 배경 이펙트 */
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 65%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+    radial-gradient(circle at 15% 18%, rgba(56, 189, 248, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 85% 45%, rgba(16, 185, 129, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(14, 165, 233, 0.18) 0%, transparent 45%);
   background-attachment: fixed;
 }
 
@@ -48,6 +50,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+  color: var(--text-main);
 }
 
 .section-subtitle {
@@ -62,20 +65,21 @@ a {
   text-decoration: none;
 }
 
-/* 5. 스크롤바 맞춤 스타일 */
+/* 5. 쿨 민트 스크롤바 맞춤 스타일 */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-obsidian);
+  background: #E0F2FE;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.5);
+  border-radius: 9999px;
+  border: 2px solid #E0F2FE;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: var(--color-secondary);
 }

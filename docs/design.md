@@ -7,20 +7,20 @@
 ## 1. 디자인 시스템 개요 (Design System Overview)
 
 본 문서는 **김도욱 개인 AI 프로젝트 포트폴리오 웹사이트** 구축을 위한 UI/UX 디자인 가이드라인입니다.  
-20대 대학생 타겟층에게 직관적이면서도 **미래지향적인 AI/Tech 감성**을 전달할 수 있도록 **다이나믹 펄스 다크 테마**, **캡슐(Pill-Shaped) 모피즘 UI**, **글래스모피즘(Glassmorphism)** 레이아웃을 핵심 콘셉트로 설정합니다.
+20대 대학생 및 남성 개발자의 청량한 감성에 맞춰 **시원하고 상큼한 스카이블루 & 에메랄드 민트 그린 배경**, **귀여운 고양이(Cat) 캐릭터 아바타 및 발바닥 모션**, **완전 둥근 캡슐 UI**, **라이트 글래스모피즘(Light Glassmorphism)** 레이아웃을 핵심 콘셉트로 설정합니다.
 
 ---
 
 ## 2. 디자인 핵심 원칙 (Design Principles)
 
-1. **Futuristic & High-Tech (미래지향적 다크 테마)**
-   - 딥 옵시디언 다크 배경 위에 네온 시안(#00F0FF)과 바이올렛(#8B5CF6) 컬러 조합으로 최첨단 AI 기술 서비스를 연상시키는 고품격 비주얼 구축.
-2. **Smooth Pill & Organic Curves (캡슐 모피즘 라운딩)**
-   - 주요 CTA 버튼과 인디케이터에 완전 둥근 **Pill-Shaped (9999px)** 곡선을 적용하고, 카드는 24px의 유기적인 모던 라운딩을 적용하여 소프트함과 세련됨의 조화 구현.
-3. **Dynamic Motion & Glow Interaction (다이나믹 펄스 모션)**
-   - 정적인 화면을 벗어나 마우스 호버 시 실시간 네온 글로우 펄스(Glow Pulse)와 3D 박스 엘리베이션 모션을 통해 생동감 넘치는 UX 제공.
-4. **Developer-Centric Readability (개발자 감성의 가독성)**
-   - 모던하고 깔끔한 `Plus Jakarta Sans`와 코드/기술용 `JetBrains Mono` 폰트의 조합으로 텍스트 가독성을 최우선 확보.
+1. **Refreshing Mint Sky & Cute Cat (시원 상큼한 민트 스카이 & 고양이 테마)**
+   - 쿨 민트 크림 화이트(#F4FAF8) 배경 위에 청량한 스카이블루(#38BDF8)와 에메랄드 민트 그린(#10B981) 파스텔 컬러 조합으로 시원시원하면서도 아기자기한 비주얼 구축.
+2. **Playful Cat Character Integration (귀여운 고양이 캐릭터)**
+   - AI 고양이 개발자 일러스트 캐릭터(DOWOOK CAT AI) 및 고양이 발바닥 이모지(`🐾`, `🐱`, `🐱‍💻`)를 주요 헤더, 히어로, 버튼, 뱃지에 바인딩.
+3. **Bouncy Cat Paw Motion & Mint Glow (고양이 발바닥 바운스 모션)**
+   - 정적인 화면을 벗어나 마우스 호버 시 실시간 민트 글로우 펄스(Soft Mint Glow)와 통통 튀는 고양이 발바닥 바운스 애니메이션을 통해 생동감 넘치는 UX 제공.
+4. **Crisp Slate Readability (시원한 화이트 테마 가독성 극대화)**
+   - 또렷한 딥 슬레이트 차콜(#0F172A)과 슬레이트 그레이(#475569) 텍스트 컬러의 조합으로 독보적인 visual hierarchy와 텍스트 가독성을 최우선 확보.
 
 ---
 
@@ -31,33 +31,33 @@
 ```css
 :root {
   /* ==========================================
-     1. Color Tokens (컬러 팔레트)
+     1. Color Tokens (시원 상큼한 민트 스카이 팔레트)
      ========================================== */
-  --bg-obsidian: #0B0F17;        /* Main Background */
-  --bg-surface-dark: #121826;     /* Card & Surface Base */
-  --bg-glass-card: rgba(18, 24, 38, 0.65); /* Glassmorphism Base */
-  --bg-glass-hover: rgba(30, 41, 59, 0.8);  /* Glass Hover Base */
+  --bg-obsidian: #F4FAF8;        /* Main Light Mint Cream Background */
+  --bg-surface-dark: #FFFFFF;     /* Pure White Card Base */
+  --bg-glass-card: rgba(255, 255, 255, 0.88); /* Light Glass Base */
+  --bg-glass-hover: rgba(240, 253, 250, 0.95);  /* Mint Ice Glass Hover */
 
-  --border-glass: rgba(255, 255, 255, 0.12); /* Glass Card Border */
-  --border-glass-bright: rgba(0, 240, 255, 0.4); /* Neon Border */
+  --border-glass: rgba(207, 250, 254, 0.9); /* Soft Sky Mint Border */
+  --border-glass-bright: rgba(56, 189, 248, 0.5); /* Sky Blue Glow Border */
 
-  /* Primary Accent: Neon Cyan */
-  --color-primary: #00F0FF;
-  --color-primary-glow: rgba(0, 240, 255, 0.35);
+  /* Primary Accent: Refreshing Sky Blue */
+  --color-primary: #38BDF8;
+  --color-primary-glow: rgba(56, 189, 248, 0.35);
 
-  /* Secondary Accent: Electric Violet */
-  --color-secondary: #8B5CF6;
-  --color-secondary-glow: rgba(139, 92, 246, 0.35);
+  /* Secondary Accent: Mint Emerald Green */
+  --color-secondary: #10B981;
+  --color-secondary-glow: rgba(16, 185, 129, 0.35);
 
   /* Text Colors */
-  --text-main: #F8FAFC;        /* High Contrast Primary Text */
-  --text-muted: #94A3B8;       /* Secondary Muted Text */
-  --text-dim: #64748B;         /* Dim Placeholder Text */
+  --text-main: #0F172A;        /* High Contrast Slate Charcoal Text */
+  --text-muted: #475569;       /* Secondary Muted Text */
+  --text-dim: #94A3B8;         /* Dim Placeholder Text */
 
   /* Gradients */
-  --grad-primary: linear-gradient(135deg, #00F0FF 0%, #8B5CF6 100%);
-  --grad-primary-hover: linear-gradient(135deg, #38F5FF 0%, #A78BFA 100%);
-  --grad-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --grad-primary: linear-gradient(135deg, #38BDF8 0%, #10B981 100%);
+  --grad-primary-hover: linear-gradient(135deg, #0284C7 0%, #059669 100%);
+  --grad-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 250, 0.8) 100%);
   --grad-glow-beam: linear-gradient(90deg, #00F0FF, #8B5CF6, #00F0FF);
 
   /* ==========================================
@@ -222,6 +222,25 @@
 - **스타일**:
   - AI 기술 태그 (예: `#GPT-4o`, `#OpenAI`): 시안 틴트 배경 (`background: rgba(0, 240, 255, 0.1)`, `color: #00F0FF`, `border: 1px solid rgba(0, 240, 255, 0.3)`)
   - 개발 스택 태그 (예: `#React`, `#Vite`): 바이올렛 틴트 배경 (`background: rgba(139, 92, 246, 0.1)`, `color: #A78BFA`, `border: 1px solid rgba(139, 92, 246, 0.3)`)
+
+---
+
+### 5.5 ✉️ 이메일 전송 연락폼 컴포넌트 (Glassmorphism Contact Form) ⭐ [신규 추가]
+
+- **배경 카드**: 글래스모피즘 딥 다크 카드 (`background: var(--bg-glass-card)`, `backdrop-filter: blur(16px)`)
+- **폼 레이아웃**:
+  - Max-Width: `680px` 중앙 정렬
+  - 라벨(`form-label`): 시안 틴트 아이콘과 `Plus Jakarta Sans` Bold (Font-size: `14px`, Color: `var(--text-main)`)
+  - 입력 필드 (`form-input` / `textarea`): 
+    - `background: rgba(11, 15, 23, 0.8)`
+    - `border: 1px solid var(--border-glass)`
+    - Focus 시: `border-color: var(--color-primary)`, `box-shadow: 0 0 15px var(--color-primary-glow)`
+- **제출 버튼 (`btn-pill-primary`)**:
+  - `[✉️ 이메일 보내기]` 전송 버튼 (Full width 또는 대형 캡슐 버튼)
+  - 전송 중(Loading): `[⏳ 이메일 발송 중...]` 문구 변경 및 클릭 비활성화 (`disabled`, opacity 0.7)
+- **피드백 알림 메시지**:
+  - 성공: 시안/에메랄드 틴트 글로우 뱃지 (`🟢 메일이 성공적으로 전송되었습니다!`)
+  - 실패: 로즈 틴트 글로우 뱃지 (`🔴 메일 전송 중 오류가 발생했습니다.`)
 
 ---
 

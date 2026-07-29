@@ -1,6 +1,6 @@
 /**
  * KIM DOWOOK AI Portfolio - 관리자 인증 및 프로젝트 추가 모달 (AdminModal.js)
- * 비밀번호 입력 및 신규 프로젝트 폼 모달 기능 제공
+ * 시원하고 귀여운 스카이블루 & 민트 그린 고양이 AI 테마
  */
 
 import { parseTags } from "../utils/validator.js";
@@ -15,11 +15,11 @@ export function renderAdminAuthModal(onAuthenticate) {
 
   modal.innerHTML = `
     <div class="modal-content">
-      <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
-        🔑 관리자 인증 (김도욱 님 전용)
+      <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+        🔑 관리자 인증 (김도욱 님 전용 🐾)
       </h3>
       <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px;">
-        자기소개 및 작업물을 직접 수정/추가할 수 있는 비밀번호를 입력해 주세요. (기본 암호: <code style="color: var(--color-primary);">1234</code>)
+        자기소개 및 작업물을 직접 수정/추가할 수 있는 비밀번호를 입력해 주세요. (기본 암호: <code style="color: var(--color-primary); font-weight: 700;">1234</code>)
       </p>
 
       <form id="admin-form">
@@ -34,7 +34,6 @@ export function renderAdminAuthModal(onAuthenticate) {
     </div>
   `;
 
-  // 닫기 및 폼 제출 이벤트
   modal.querySelector("#close-admin-modal").addEventListener("click", () => {
     modal.classList.remove("active");
   });
@@ -58,29 +57,29 @@ export function renderAddProjectModal(onAdd) {
 
   modal.innerHTML = `
     <div class="modal-content" style="max-width: 520px;">
-      <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-main); margin-bottom: 20px;">
+      <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 20px;">
         ➕ 신규 AI 프로젝트 추가
       </h3>
 
       <form id="add-project-form" style="display: flex; flex-direction: column; gap: 14px;">
         <div>
-          <label style="font-size: 0.85rem; color: var(--text-muted);">프로젝트 제목</label>
+          <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">프로젝트 제목</label>
           <input type="text" id="new-title" class="form-input" placeholder="예: 🤖 AI 요약 서비스" required />
         </div>
         <div>
-          <label style="font-size: 0.85rem; color: var(--text-muted);">한 줄 요약 설명</label>
+          <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">한 줄 요약 설명</label>
           <input type="text" id="new-desc" class="form-input" placeholder="서비스에 대한 짧은 설명" required />
         </div>
         <div>
-          <label style="font-size: 0.85rem; color: var(--text-muted);">기술 태그 (쉼표 분리)</label>
+          <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">기술 태그 (쉼표 분리)</label>
           <input type="text" id="new-tags" class="form-input" placeholder="#GPT-4o, #React, #Vite" required />
         </div>
         <div>
-          <label style="font-size: 0.85rem; color: var(--text-muted);">라이브 데모 URL</label>
+          <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">라이브 데모 URL</label>
           <input type="url" id="new-demo" class="form-input" placeholder="https://..." required />
         </div>
         <div>
-          <label style="font-size: 0.85rem; color: var(--text-muted);">Github URL</label>
+          <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">Github URL</label>
           <input type="url" id="new-github" class="form-input" placeholder="https://github.com/..." required />
         </div>
         <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px;">

@@ -24,6 +24,16 @@
   <!-- Supabase JS Client SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <!-- EmailJS SDK v4 및 API Key 초기화 -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init({ publicKey: "lyYq0Z8STxd99nxT0" });
+      }
+    })();
+  </script>
+
   <!-- 메인 JS 스크립트 (파일 직접 열기 및 로컬 서버 모두 호환) -->
   <script src="./js/bundle.js" defer></script>
 </body>

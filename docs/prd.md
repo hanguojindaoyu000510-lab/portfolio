@@ -105,12 +105,34 @@ graph TD
 
 ---
 
-### F-05. 소셜 & 연락처 섹션 (Contact & Social Links)
-- **기능 설명**: 학생들과 부담 없이 소통할 수 있는 연락처 버튼 모음입니다.
+### F-05. ✉️ 소셜 & 이메일 전송 연락폼 섹션 (Contact Form & Social Links) ⭐ [기능 확장]
+- **기능 설명**: 방문자가 이름, 이메일 주소, 메시지를 입력하면 개발자에게 실시간 이메일이 발송되는 EmailJS 연동 연락폼과 추가 소셜 버튼 모음입니다.
 - **세부 구성**:
-  - **1:1 오픈채팅 버튼**: 클릭 시 카카오톡 오픈채팅방 연결.
-  - **이메일 복사 버튼**: 클릭 시 이메일 주소 클립보드 자동 복사.
-  - **Github 저장소 바로가기**: 내 개발 내역 및 코드를 확인할 수 있는 Github 프로필 연결.
+  - **이메일 전송 연락폼 (EmailJS Contact Form)**:
+    - **성함/닉네임 입력란 (`name`)**: 필수 입력 (Text Input)
+    - **이메일 주소 입력란 (`email`)**: 답변 수신용 이메일 주소 형식 검증 (Email Input)
+    - **메시지 내용 입력란 (`message`)**: 자유로운 문의 및 질의 내용 작성 (Textarea)
+    - **🛡️ 3중 스팸 방지 시스템 (Anti-Spam Protection)**:
+      1. **허니팟 봇 트랩 (Honeypot Trap)**: 숨김 필드(`website_url`)를 통해 봇 자동 제출 즉시 탐지 및 차단
+      2. **🐾 고양이 스팸 방지 퀴즈 (Cat CAPTCHA Quiz)**: 난수 계산 문제 (예: `4 + 3 = ?`) 정답 입력 검증
+      3. **30초 재전송 쿨타임 (Rate Limiting)**: 연속 도배 방지를 위해 전송 성공 후 30초간 재전송 제한 (`sessionStorage` 기반)
+    - **이메일 보내기 버튼 (`[✉️ 이메일 보내기]`)**: 클릭 시 EmailJS SDK (`service_5imxylv` / `template_8gaj1uo`)를 통해 `hanguojindaoyu000510@gmail.com`으로 실시간 메일 전송
+    - **발송 상태 피드백**: 전송 중 버튼 로딩 표시 및 전송 완료/실패 안내 메시지 출력
+  - **소셜 & 보조 연락처 버튼 모음**:
+    - **1:1 오픈채팅 버튼**: 클릭 시 카카오톡 오픈채팅방 연결
+    - **이메일 복사 버튼**: 클릭 시 이메일 주소 클립보드 자동 복사
+    - **Github 저장소 바로가기**: 내 개발 내역 및 코드를 확인할 수 있는 Github 프로필 연결
+
+---
+
+### F-06. 🏫 카카오맵 학교 위치 지도 섹션 & 서버 API 프록시 ⭐ [신규 추가]
+- **기능 설명**: 카카오맵 API(Kakao Maps API)를 통해 개발자의 출신 학교(**한국항공대학교**) 위치를 지도로 보여주며, API 키 유출 방지를 위해 서버 API 프록시 구조로 호출합니다.
+- **세부 사양**:
+  - **카카오맵 인터랙티브 지도**: 학교 위치 핀 마커, 귀여운 고양이 커스텀 인포윈도우(`🐾 한국항공대학교 🐱`), 지도 확대/축소 컨트롤 내장
+  - **보안 아키텍처 (Server API Proxy)**:
+    - 프론트엔드에 API 키를 하드코딩하지 않고 Node.js 서버 / Vercel Serverless API (`/api/map-config`, `/api/contact-config`)를 통해 수신
+    - `.gitignore` 설정을 통해 `.env` 파일의 민감 키값이 GitHub에 유출되는 것을 100% 방지
+    - 안전한 오픈 템플릿인 `.env.example` 제공
 
 ---
 
@@ -155,18 +177,18 @@ graph TD
 
 ## 6. 🎨 UI/UX 디자인 가이드라인 (Design Guidelines)
 
-### 🎨 디자인 콘셉트: **Futuristic AI Tech Dark Mode & Clean Admin Dashboard**
-- **일반 모드**: 20대 학생들에게 감각적으로 다가갈 수 있는 **AI/Tech 테마 딥 다크 모드 & 글래스모피즘(Glassmorphism)**.
-- **관리자 페이지**: 작업 시 집중도를 높일 수 있도록 깔끔한 **다크 폼 대시보드(Dark Form Dashboard) 스타일** 적용.
+### 🎨 디자인 콘셉트: **Refreshing Mint Sky & Cute AI Cat Theme** ⭐ [테마 리뉴얼]
+- **일반 모드**: 남성 개발자의 청량함과 아기자기한 감성을 동시에 충족하는 **스카이블루 & 민트 그린 고양이 AI 테마 & 소프트 글래스모피즘(Light Glassmorphism)**.
+- **관리자 페이지**: 민트 테마와 통일감을 주는 깔끔하고 시원한 **파스텔 폼 대시보드(Light Mint Dashboard) 스타일** 적용.
 
 ### 🎨 컬러 팔레트
-| 역할 | 컬러명 | HEX 코드 | 느낌 |
+| 역할 | 컬러명 | HEX / RGBA 코드 | 느낌 |
 | :--- | :--- | :--- | :--- |
-| **배경색 (Background)** | Deep Obsidian | `#0B0F19` | 세련되고 깊이 있는 딥 다크 |
-| **카드/폼 배경 (Surface)** | Glass Dark | `rgba(255, 255, 255, 0.05)` | 반투명 유리 느낌 및 폼 카드 |
-| **메인 포인트 (Primary)** | Neon Cyan | `#00F0FF` | 미래지향적 AI 느낌 |
-| **관리자 포인트 (Admin)** | Emerald Green / Cyan | `#10B981` | 저장 완료 및 상태 확인 강조 |
-| **텍스트 (Text Primary)** | Pure White | `#FFFFFF` | 또렷한 가독성 |
+| **배경색 (Background)** | Mint Cool Cream White | `#F4FAF8` | 시원하고 깨끗한 쿨 크림 화이트 |
+| **카드/폼 배경 (Surface)** | Pure Light Glass | `rgba(255, 255, 255, 0.88)` | 투명하고 상큼한 쿨 민트 글래스모피즘 |
+| **메인 포인트 (Primary)** | Refreshing Sky Blue | `#38BDF8` | 청량하고 선명한 스카이블루 |
+| **보조 포인트 (Secondary)** | Mint Emerald Green | `#10B981` | 산뜻하고 감각적인 민트 에메랄드 그린 |
+| **텍스트 (Text Primary)** | Deep Slate Charcoal | `#0F172A` | 선명하고 눈이 편안한 슬레이트 차콜 |
 
 ---
 

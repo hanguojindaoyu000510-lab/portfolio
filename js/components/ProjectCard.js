@@ -1,6 +1,6 @@
 /**
  * KIM DOWOOK AI Portfolio - AI 작업물 갤러리 섹션 및 카드 컴포넌트 (ProjectCard.js)
- * 프로젝트 그리드 카드 렌더링 및 관리자 모드 전용 CRUD(추가/삭제) 기능 포함
+ * 시원하고 귀여운 스카이블루 & 민트 그린 고양이 AI 테마
  */
 
 export function renderProjectsSection(projects, isAdmin, onAddProject, onDeleteProject) {
@@ -13,7 +13,9 @@ export function renderProjectsSection(projects, isAdmin, onAddProject, onDeleteP
       <!-- 섹션 타이틀 및 관리자 신규 추가 버튼 -->
       <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px;">
         <div>
-          <h2 class="section-title">🚀 AI PROJECTS</h2>
+          <h2 class="section-title">
+            <span>🐱 AI PROJECTS</span>
+          </h2>
           <p class="section-subtitle" style="margin-bottom: 0;">직접 기획하고 개발한 AI 웹사이트 및 앱 서비스 갤러리입니다.</p>
         </div>
         ${isAdmin ? `
@@ -59,17 +61,17 @@ function renderSingleProjectCard(project, isAdmin) {
     <div class="glass-card project-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
       <div>
         <!-- 프로젝트 썸네일 이미지 -->
-        <div style="position: relative; width: 100%; height: 180px; border-radius: 16px; overflow: hidden; margin-bottom: 20px;">
+        <div style="position: relative; width: 100%; height: 190px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 6px 16px rgba(186, 230, 253, 0.2);">
           <img src="${project.imageUrl}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1.0)'" />
           ${isAdmin ? `
-            <button class="delete-project-btn btn-pill btn-pill-sm" data-id="${project.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(239, 68, 68, 0.85); color: white; border: none; padding: 0 12px; height: 30px;">
+            <button class="delete-project-btn btn-pill btn-pill-sm" data-id="${project.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(244, 63, 94, 0.9); color: white; border: none; padding: 0 14px; height: 32px; font-weight: 700;">
               🗑️ 삭제
             </button>
           ` : ''}
         </div>
 
         <!-- 프로젝트 타이틀 -->
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px; letter-spacing: -0.01em;">
           ${project.title}
         </h3>
 
@@ -85,10 +87,10 @@ function renderSingleProjectCard(project, isAdmin) {
           ${project.tags.map(tag => `<span class="tag-pill tag-pill-ai">${tag}</span>`).join('')}
         </div>
 
-        <!-- 하단 링크 액션 버튼 (라이브 데모 바로가기 & Github) -->
+        <!-- 하단 링크 액션 버튼 -->
         <div style="display: flex; gap: 10px;">
           <a href="${project.demoUrl}" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-primary btn-pill-sm" style="flex: 1;">
-            🚀 데모 접속
+            🐾 데모 접속
           </a>
           <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary btn-pill-sm">
             💻 Github

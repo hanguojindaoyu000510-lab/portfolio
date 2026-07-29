@@ -1,25 +1,39 @@
 /* ==========================================================================
-   KIM DOWOOK AI Portfolio - 마이크로 애니메이션 & 펄스 이펙트 (animation.css)
+   KIM DOWOOK AI Portfolio - 마이크로 애니메이션 & 파스텔 글로우 이펙트 (animation.css)
    ========================================================================== */
 
-/* 1. 네온 글로우 펄스 애니메이션 (Continuous Glowing Pulse) */
-@keyframes neonGlowPulse {
+/* 1. 스카이 민트 글로우 펄스 애니메이션 (Soft Sky Mint Glowing Pulse) */
+@keyframes mintGlowPulse {
   0% {
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25), 0 0 30px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2), 0 2px 8px rgba(16, 185, 129, 0.15);
   }
   50% {
-    box-shadow: 0 0 35px rgba(0, 240, 255, 0.55), 0 0 60px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 14px 36px rgba(56, 189, 248, 0.4), 0 6px 18px rgba(16, 185, 129, 0.3);
   }
   100% {
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25), 0 0 30px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2), 0 2px 8px rgba(16, 185, 129, 0.15);
   }
 }
 
 .pulse-glow {
-  animation: neonGlowPulse 3s infinite ease-in-out;
+  animation: mintGlowPulse 3.5s infinite ease-in-out;
 }
 
-/* 2. 회전 네온 빔 그라디언트 (Gradient Beam Effect) */
+/* 2. 통통 튀는 고양이 발바닥 바운스 애니메이션 */
+@keyframes catPawBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-3deg);
+  }
+}
+
+.cat-bounce {
+  animation: catPawBounce 2.2s infinite ease-in-out;
+}
+
+/* 3. 회전 스카이 민트 빔 그라디언트 (Gradient Beam Effect) */
 @keyframes borderBeamRotate {
   0% {
     background-position: 0% 50%;
@@ -33,16 +47,16 @@
 }
 
 .border-beam-active {
-  background: linear-gradient(90deg, #00F0FF, #8B5CF6, #00F0FF);
+  background: linear-gradient(90deg, #38BDF8, #10B981, #38BDF8);
   background-size: 200% 200%;
   animation: borderBeamRotate 4s linear infinite;
 }
 
-/* 3. 페이드 인 및 슬라이드 업 효과 (Fade In Up) */
+/* 4. 페이드 인 및 슬라이드 업 효과 (Fade In Up) */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -54,14 +68,14 @@
   animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* 4. 관리자 편집 모드 활성화 테두리 대쉬 펄스 */
+/* 5. 관리자 편집 모드 활성화 테두리 대쉬 펄스 */
 @keyframes adminPulseBorder {
-  0% { border-color: rgba(0, 240, 255, 0.4); }
-  50% { border-color: rgba(0, 240, 255, 1.0); }
-  100% { border-color: rgba(0, 240, 255, 0.4); }
+  0% { border-color: rgba(56, 189, 248, 0.4); }
+  50% { border-color: rgba(56, 189, 248, 1.0); }
+  100% { border-color: rgba(56, 189, 248, 0.4); }
 }
 
 .admin-editing-active {
-  border: 2px dashed #00F0FF !important;
+  border: 2px dashed #38BDF8 !important;
   animation: adminPulseBorder 2s infinite ease-in-out;
 }

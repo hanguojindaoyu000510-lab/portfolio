@@ -19,6 +19,7 @@ import { renderBioSection } from "./components/BioSection.js";
 import { renderProjectsSection } from "./components/ProjectCard.js";
 import { renderAdminAuthModal, renderAddProjectModal } from "./components/AdminModal.js";
 import { renderContactSection } from "./components/Contact.js";
+import { renderSchoolMapSection } from "./components/SchoolMap.js";
 import { renderAdminPage } from "./components/AdminPage.js";
 
 // 애플리케이션 상태 (State)
@@ -101,6 +102,10 @@ function renderApp() {
     handleDeleteProject
   );
   mainEl.appendChild(projectsEl);
+
+  // 학교 위치 지도 섹션
+  const schoolMapEl = renderSchoolMapSection();
+  mainEl.appendChild(schoolMapEl);
 
   // 연락처 섹션
   const contactEl = renderContactSection();

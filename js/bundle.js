@@ -231,24 +231,34 @@
     const header = document.createElement("header");
     header.className = "header-nav";
     header.style.cssText = `
-      position: sticky; top: 0; left: 0; width: 100%; z-index: 100;
-      background: rgba(11, 15, 23, 0.75); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-glass); padding: 18px 0;
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1.5px solid rgba(56, 189, 248, 0.3);
+      padding: 14px 0;
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.3);
     `;
 
-    const btnText = state.currentView === 'admin'
-      ? '🌐 메인 포트폴리오'
+    const btnText = state.currentView === 'admin' 
+      ? '🌐 메인 포트폴리오' 
       : (state.isAdmin ? '🔑 관리자 대시보드' : '🔑 관리자 로그인');
 
     header.innerHTML = `
       <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
-        <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px; font-size: 1.35rem; font-weight: 800; color: var(--text-main);">
+        <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; text-decoration: none;">
+          <span style="font-size: 1.3rem;" class="cat-bounce">🐾</span>
           <span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DOWOOK.AI</span>
+          <span style="font-size: 1.2rem;">🐱</span>
         </a>
-        <nav style="display: flex; align-items: center; gap: 24px;">
-          <a href="#about" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">소개</a>
-          <a href="#projects" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">작업물</a>
-          <a href="#contact" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">연락처</a>
+        <nav style="display: flex; align-items: center; gap: 10px;">
+          <a href="#about" style="color: #FFFFFF; font-weight: 800; font-size: 1.05rem; padding: 8px 18px; border-radius: var(--radius-pill); transition: all 0.2s ease; text-decoration: none;" onmouseover="this.style.color='#38BDF8'; this.style.backgroundColor='rgba(56, 189, 248, 0.2)'" onmouseout="this.style.color='#FFFFFF'; this.style.backgroundColor='transparent'">소개</a>
+          <a href="#projects" style="color: #FFFFFF; font-weight: 800; font-size: 1.05rem; padding: 8px 18px; border-radius: var(--radius-pill); transition: all 0.2s ease; text-decoration: none;" onmouseover="this.style.color='#38BDF8'; this.style.backgroundColor='rgba(56, 189, 248, 0.2)'" onmouseout="this.style.color='#FFFFFF'; this.style.backgroundColor='transparent'">작업물</a>
+          <a href="#contact" style="color: #FFFFFF; font-weight: 800; font-size: 1.05rem; padding: 8px 18px; border-radius: var(--radius-pill); transition: all 0.2s ease; text-decoration: none;" onmouseover="this.style.color='#38BDF8'; this.style.backgroundColor='rgba(56, 189, 248, 0.2)'" onmouseout="this.style.color='#FFFFFF'; this.style.backgroundColor='transparent'">연락처</a>
           <button id="admin-auth-btn" class="btn-pill btn-pill-sm ${state.isAdmin ? 'btn-pill-primary' : 'btn-pill-secondary'}" style="margin-left: 12px;">
             ${btnText}
           </button>
@@ -274,21 +284,40 @@
   function renderHero(profile) {
     const hero = document.createElement("section");
     hero.className = "hero-section";
-    hero.style.cssText = "padding: 80px 0 60px 0; text-align: center;";
+    hero.style.cssText = "padding: 80px 0 60px 0;";
     hero.innerHTML = `
-      <div class="container">
-        <div style="display: inline-block; padding: 6px 18px; border-radius: var(--radius-pill); background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); color: #00F0FF; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; margin-bottom: 24px;">
-          ⚡ AI TREND & WEB-APP DEVELOPER
-        </div>
-        <h1 style="font-size: var(--fs-hero); font-weight: 800; color: var(--text-main); line-height: 1.25; margin-bottom: 20px; word-break: keep-all;">
-          ${profile.headline}
-        </h1>
-        <p style="font-size: var(--fs-body-lg); color: var(--text-muted); max-width: 720px; margin: 0 auto 36px auto; line-height: 1.6;">
-          학생분들과 소통하며 최신 Generative AI 기술을 접목한 웹사이트 및 앱 서비스를 개발하고 내역을 공유합니다.
-        </p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <a href="#projects" class="btn-pill btn-pill-primary">🚀 작업물 구경하기</a>
-          <a href="#contact" class="btn-pill btn-pill-secondary">💬 연락하기</a>
+      <div class="container" style="max-width: 1000px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap-reverse;">
+          <div style="flex: 1; min-width: 320px; text-align: left;">
+            <div style="margin-bottom: 20px;">
+              <span class="tag-pill tag-pill-ai pulse-glow" style="padding: 8px 20px; font-size: 0.9rem; height: auto; border-radius: var(--radius-pill); font-weight: 700;">
+                🐱‍💻 MINT & SKY AI CAT DEVELOPER 🐾
+              </span>
+            </div>
+            <h1 style="font-size: var(--fs-hero); font-weight: 800; color: var(--text-main); line-height: 1.3; margin-bottom: 20px; word-break: keep-all;">
+              AI 기술로 시원하고 스마트한<br/>경험을 만드는 <span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">김도욱</span>입니다 🐾
+            </h1>
+            <p style="font-size: var(--fs-body-lg); color: var(--text-muted); max-width: 580px; margin: 0 0 36px 0; line-height: 1.7;">
+              유용하고 감각적인 AI 서비스를 개발하고 사용자와 함께 소통해 나갑니다.
+            </p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <a href="#projects" class="btn-pill btn-pill-primary">🐾 작업물 구경하기</a>
+              <a href="#contact" class="btn-pill btn-pill-secondary">✉️ 이메일 보내기</a>
+            </div>
+          </div>
+          <div style="flex: 0 0 280px; text-align: center; margin: 0 auto;">
+            <div class="glass-card pulse-glow" style="padding: 16px; border-radius: 36px; background: #FFFFFF; border: 2px solid rgba(56, 189, 248, 0.4); box-shadow: 0 20px 40px rgba(56, 189, 248, 0.25);">
+              <img 
+                src="./assets/cat_developer.png" 
+                alt="AI Cat Developer Avatar" 
+                style="width: 100%; height: 260px; object-fit: cover; border-radius: 28px;"
+                class="cat-bounce"
+              />
+              <div style="margin-top: 12px; font-weight: 800; font-size: 0.95rem; color: var(--color-primary);">
+                🐾 DOWOOK CAT AI 🐱
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     `;
@@ -308,9 +337,9 @@
         <div class="glass-card" style="padding: 40px; position: relative;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 24px;">
             <div>
-              <span class="tag-pill tag-pill-ai" style="margin-bottom: 12px; display: inline-block;">ABOUT ME</span>
-              <h2 style="font-size: var(--fs-h1); font-weight: 700; color: var(--text-main);">
-                안녕하세요, <span style="color: #00F0FF;">${profile.name}</span>입니다! 👋
+              <span class="tag-pill tag-pill-ai" style="margin-bottom: 12px; display: inline-block;">👋 ABOUT ME 🐾</span>
+              <h2 style="font-size: var(--fs-h1); font-weight: 800; color: var(--text-main);">
+                안녕하세요, <span style="color: var(--color-primary);">${profile.name}</span>입니다! 🐾
               </h2>
             </div>
             ${state.isAdmin ? `
@@ -320,21 +349,21 @@
             ` : ''}
           </div>
 
-          <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 32px;">
+          <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px;">
             ${profile.bio}
           </p>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-            <div style="background: rgba(11, 15, 23, 0.6); padding: 24px; border-radius: 16px; border: 1px solid var(--border-glass);">
+            <div style="background: rgba(255, 255, 255, 0.9); padding: 24px; border-radius: 20px; border: 1.5px solid var(--border-glass); box-shadow: 0 4px 14px rgba(186, 230, 253, 0.1);">
               <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🎯 핵심 관심 분야</h4>
               <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                ${interests.map(i => `<span class="tag-pill tag-pill-ai">${i}</span>`).join('')}
+                ${interests.map(i => `<span class="tag-pill tag-pill-ai">🐾 ${i}</span>`).join('')}
               </div>
             </div>
-            <div style="background: rgba(11, 15, 23, 0.6); padding: 24px; border-radius: 16px; border: 1px solid var(--border-glass);">
+            <div style="background: rgba(255, 255, 255, 0.9); padding: 24px; border-radius: 20px; border: 1.5px solid var(--border-glass); box-shadow: 0 4px 14px rgba(186, 230, 253, 0.1);">
               <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🛠️ 보유 기술 스택</h4>
               <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                ${techStack.map(t => `<span class="tag-pill tag-pill-dev">${t}</span>`).join('')}
+                ${techStack.map(t => `<span class="tag-pill tag-pill-dev">⚡ ${t}</span>`).join('')}
               </div>
             </div>
           </div>
@@ -363,8 +392,8 @@
         <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 40px;">
           <div>
             <span class="tag-pill tag-pill-dev" style="margin-bottom: 12px; display: inline-block;">MY AI PROJECTS</span>
-            <h2 style="font-size: var(--fs-h1); font-weight: 700; color: var(--text-main);">
-              직접 개발한 <span style="color: #8B5CF6;">AI 웹 & 앱</span> 작업물 🚀
+            <h2 style="font-size: var(--fs-h1); font-weight: 800; color: var(--text-main);">
+              직접 개발한 <span style="color: var(--color-primary);">AI 웹 & 앱</span> 작업물 🐱
             </h2>
           </div>
           ${state.isAdmin ? `
@@ -378,17 +407,17 @@
           ${projects.map(p => `
             <div class="glass-card project-card" style="display: flex; flex-direction: column; justify-content: space-between;">
               <div>
-                <div style="height: 180px; border-radius: 16px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-glass);">
+                <div style="height: 190px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; border: 1.5px solid var(--border-glass); box-shadow: 0 6px 16px rgba(186, 230, 253, 0.15);">
                   <img src="${p.imageUrl}" alt="${p.title}" style="width: 100%; height: 100%; object-fit: cover;" />
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;">
                   ${p.tags.map(t => `<span class="tag-pill tag-pill-ai">${t}</span>`).join('')}
                 </div>
-                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">${p.title}</h3>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">${p.title}</h3>
                 <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">${p.description}</p>
               </div>
               <div style="display: flex; gap: 10px;">
-                <a href="${p.demoUrl}" target="_blank" class="btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; text-align: center; text-decoration: none;">🚀 바로가기</a>
+                <a href="${p.demoUrl}" target="_blank" class="btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; text-align: center; text-decoration: none;">🐾 데모 접속</a>
                 <a href="${p.githubUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;">💻 Github</a>
               </div>
             </div>
@@ -408,30 +437,249 @@
     return section;
   }
 
+  const EMAILJS_SERVICE_ID = "service_5imxylv";
+  const EMAILJS_TEMPLATE_ID = "template_8gaj1uo";
+  const EMAILJS_PUBLIC_KEY = "lyYq0Z8STxd99nxT0";
+  const RECEIVER_EMAIL = "hanguojindaoyu000510@gmail.com";
+  const COOLDOWN_MS = 30000;
+
+  function generateCatQuiz() {
+    const n1 = Math.floor(Math.random() * 8) + 2;
+    const n2 = Math.floor(Math.random() * 8) + 1;
+    return { n1, n2, ans: n1 + n2 };
+  }
+
   function renderContactSection() {
     const contact = document.createElement("section");
     contact.id = "contact";
-    contact.style.cssText = "padding: 60px 0 80px 0;";
+    contact.className = "section";
+
+    let currentQuiz = generateCatQuiz();
+
     contact.innerHTML = `
-      <div class="container">
-        <div class="glass-card" style="padding: 48px; text-align: center;">
-          <span class="tag-pill tag-pill-ai" style="margin-bottom: 16px; display: inline-block;">GET IN TOUCH</span>
-          <h2 style="font-size: var(--fs-h1); font-weight: 700; color: var(--text-main); margin-bottom: 16px;">
-            함께 이야기 나누고 싶으신가요? 💬
-          </h2>
-          <p style="font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 36px auto; line-height: 1.6;">
-            학생분들의 질문이나 AI 프로젝트 제안, 협업 문의는 언제든 환영합니다!
-          </p>
-          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-            <button id="btn-copy-email" class="btn-pill btn-pill-primary">📧 이메일 주소 복사하기</button>
-            <a href="https://github.com" target="_blank" class="btn-pill btn-pill-secondary" style="text-decoration: none;">🐙 Github 프로필</a>
+      <div class="container" style="max-width: 800px;">
+        <div class="glass-card pulse-glow" style="padding: 48px 32px; position: relative;">
+          <!-- 섹션 헤더 -->
+          <div style="text-align: center; margin-bottom: 36px;">
+            <span class="tag-pill tag-pill-ai" style="margin-bottom: 12px; display: inline-flex;">✉️ CONTACT ME 🐾</span>
+            <h2 style="font-size: 2.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 12px;">
+              이메일로 문의 남기기
+            </h2>
+            <p style="font-size: 1.05rem; color: var(--text-muted); max-width: 560px; margin: 0 auto;">
+              프로젝트 제작 문의, 기술 협업 제안, 기타 메시지를 남겨주시면 확인 후 입력하신 이메일로 답변을 보내드립니다.
+            </p>
+          </div>
+
+          <!-- EmailJS 연동 연락폼 -->
+          <form id="contact-form" style="display: flex; flex-direction: column; gap: 4px;">
+            <!-- 1. 스팸 봇 차단용 허니팟 숨김 필드 -->
+            <input 
+              type="text" 
+              id="contact-honeypot" 
+              name="website_url" 
+              style="display:none !important;" 
+              tabindex="-1" 
+              autocomplete="off" 
+            />
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+              <!-- 이름 / 닉네임 입력 -->
+              <div class="form-group">
+                <label for="contact-name" class="form-label">
+                  👤 성함 / 닉네임 <span style="color: var(--color-primary);">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-name" 
+                  name="name" 
+                  class="form-input" 
+                  placeholder="예: 홍길동" 
+                  required 
+                />
+              </div>
+
+              <!-- 이메일 주소 입력 -->
+              <div class="form-group">
+                <label for="contact-email" class="form-label">
+                  ✉️ 이메일 주소 <span style="color: var(--color-primary);">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="contact-email" 
+                  name="email" 
+                  class="form-input" 
+                  placeholder="example@domain.com" 
+                  required 
+                />
+              </div>
+            </div>
+
+            <!-- 메시지 내용 입력 -->
+            <div class="form-group">
+              <label for="contact-message" class="form-label">
+                💬 메시지 내용 <span style="color: var(--color-primary);">*</span>
+              </label>
+              <textarea 
+                id="contact-message" 
+                name="message" 
+                class="form-input" 
+                placeholder="문의하실 내용이나 전달하고 싶은 메시지를 자유롭게 입력해 주세요." 
+                required
+              ></textarea>
+            </div>
+
+            <!-- 🐾 2. 고양이 보안 퀴즈 (스팸 방지 CAPTCHA) -->
+            <div class="form-group" style="background: rgba(56, 189, 248, 0.08); padding: 18px 20px; border-radius: var(--radius-input); border: 1.5px dashed var(--border-glass-bright); margin-bottom: 24px;">
+              <label for="contact-quiz" class="form-label" style="margin-bottom: 8px;">
+                🐾 고양이 스팸 방지 퀴즈: 
+                <span id="quiz-question-text" style="color: var(--color-primary); font-weight: 800; font-size: 1.05rem;">
+                  ${currentQuiz.n1} + ${currentQuiz.n2} = ?
+                </span> 
+                <span style="color: var(--color-primary);">*</span>
+              </label>
+              <input 
+                type="number" 
+                id="contact-quiz" 
+                class="form-input" 
+                placeholder="숫자 정답 입력 (예: ${currentQuiz.ans})" 
+                required 
+              />
+            </div>
+
+            <!-- 전송 버튼 -->
+            <div style="text-align: center; margin-top: 4px;">
+              <button type="submit" id="contact-submit-btn" class="btn-pill btn-pill-primary" style="width: 100%; max-width: 320px; font-size: 1.05rem;">
+                🚀 이메일 보내기
+              </button>
+            </div>
+
+            <!-- 피드백 알림 영역 -->
+            <div id="contact-feedback" class="contact-feedback"></div>
+          </form>
+
+          <div style="border-top: 1.5px solid var(--border-glass); margin: 40px 0 28px;"></div>
+
+          <!-- 소셜 & 보조 연락처 캡슐 버튼 모음 -->
+          <div style="text-align: center;">
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 16px; font-weight: 600;">
+              소셜 메신저 및 기타 채널로 연락하기
+            </p>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap;">
+              <!-- 1:1 오픈채팅 -->
+              <a href="https://open.kakao.com" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary btn-pill-sm">
+                🟡 1:1 오픈채팅
+              </a>
+
+              <!-- 이메일 주소 복사 버튼 -->
+              <button id="btn-copy-email" type="button" class="btn-pill btn-pill-secondary btn-pill-sm">
+                📋 이메일 주소 복사
+              </button>
+
+              <!-- Github 바로가기 -->
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary btn-pill-sm">
+                💻 Github 프로필
+              </a>
+            </div>
           </div>
         </div>
       </div>
     `;
 
-    contact.querySelector("#btn-copy-email").addEventListener("click", () => {
-      copyToClipboard("dowook.ai.dev@gmail.com", "📧 김도욱 개발자의 이메일 주소가 복사되었습니다!");
+    const form = contact.querySelector("#contact-form");
+    const submitBtn = contact.querySelector("#contact-submit-btn");
+    const feedbackEl = contact.querySelector("#contact-feedback");
+    const copyBtn = contact.querySelector("#btn-copy-email");
+
+    copyBtn.addEventListener("click", () => {
+      copyToClipboard(RECEIVER_EMAIL, `이메일 주소(${RECEIVER_EMAIL})가 클립보드에 복사되었습니다!`);
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // 1. 허니팟 스팸 봇 차단 검증
+      const honeypotVal = form.querySelector("#contact-honeypot").value;
+      if (honeypotVal) {
+        feedbackEl.className = "contact-feedback error";
+        feedbackEl.textContent = "⚠️ 비정상적인 접근(스팸 봇)이 탐지되었습니다.";
+        return;
+      }
+
+      // 2. 30초 재전송 쿨타임 검증
+      const lastSentTime = sessionStorage.getItem("dowook_last_email_sent_time");
+      if (lastSentTime) {
+        const elapsed = Date.now() - parseInt(lastSentTime, 10);
+        if (elapsed < COOLDOWN_MS) {
+          const remainSec = Math.ceil((COOLDOWN_MS - elapsed) / 1000);
+          feedbackEl.className = "contact-feedback error";
+          feedbackEl.textContent = `⚠️ 잦은 전송 방지를 위해 ${remainSec}초 후 다시 시도해 주세요.`;
+          return;
+        }
+      }
+
+      const name = form.querySelector("#contact-name").value.trim();
+      const email = form.querySelector("#contact-email").value.trim();
+      const message = form.querySelector("#contact-message").value.trim();
+      const userQuizVal = parseInt(form.querySelector("#contact-quiz").value.trim(), 10);
+
+      if (!name || !email || !message || isNaN(userQuizVal)) {
+        feedbackEl.className = "contact-feedback error";
+        feedbackEl.textContent = "⚠️ 모든 필수 입력란 및 보안 퀴즈 정답을 작성해 주세요.";
+        return;
+      }
+
+      // 3. 🐾 고양이 보안 퀴즈 정답 검증
+      if (userQuizVal !== currentQuiz.ans) {
+        feedbackEl.className = "contact-feedback error";
+        feedbackEl.textContent = `⚠️ 고양이 보안 퀴즈 정답이 올바르지 않습니다. (${currentQuiz.n1} + ${currentQuiz.n2} 정답 입력)`;
+        return;
+      }
+
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.7";
+      submitBtn.innerHTML = `⏳ 이메일 전송 중...`;
+      feedbackEl.className = "contact-feedback";
+      feedbackEl.textContent = "";
+
+      try {
+        if (typeof window.emailjs !== "undefined") {
+          await window.emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            {
+              name: name,
+              email: email,
+              message: message,
+              to_email: RECEIVER_EMAIL
+            },
+            EMAILJS_PUBLIC_KEY
+          );
+        } else {
+          throw new Error("EmailJS SDK가 로드되지 않았습니다.");
+        }
+
+        sessionStorage.setItem("dowook_last_email_sent_time", Date.now().toString());
+
+        feedbackEl.className = "contact-feedback success";
+        feedbackEl.textContent = `🎉 성공적으로 이메일이 전송되었습니다! (${RECEIVER_EMAIL} 수신)`;
+        form.reset();
+
+        currentQuiz = generateCatQuiz();
+        const quizTextEl = form.querySelector("#quiz-question-text");
+        const quizInputEl = form.querySelector("#contact-quiz");
+        if (quizTextEl) quizTextEl.textContent = `${currentQuiz.n1} + ${currentQuiz.n2} = ?`;
+        if (quizInputEl) quizInputEl.placeholder = `숫자 정답 입력 (예: ${currentQuiz.ans})`;
+
+      } catch (error) {
+        console.error("EmailJS Send Error:", error);
+        feedbackEl.className = "contact-feedback error";
+        feedbackEl.textContent = `❌ 메일 전송 중 오류가 발생했습니다. (${error.text || error.message || "다시 시도해 주세요."})`;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.innerHTML = originalBtnText;
+      }
     });
 
     return contact;
@@ -788,6 +1036,118 @@
     }
   }
 
+  function renderSchoolMapSection() {
+    const mapSection = document.createElement("section");
+    mapSection.id = "school-map";
+    mapSection.className = "section";
+
+    mapSection.innerHTML = `
+      <div class="container" style="max-width: 900px;">
+        <div class="glass-card pulse-glow" style="padding: 40px 32px; position: relative;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+            <div>
+              <span class="tag-pill tag-pill-ai" style="margin-bottom: 10px; display: inline-flex;">🏫 LOCATION 🐾</span>
+              <h2 style="font-size: 2rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
+                우리 학교 위치 안내
+              </h2>
+              <p id="school-address-text-bundle" style="font-size: 0.95rem; color: var(--text-muted);">
+                📍 경기도 고양시 덕양구 항공대학로 76 (한국항공대학교)
+              </p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button id="copy-school-addr-bundle" class="btn-pill btn-pill-secondary btn-pill-sm">📋 주소 복사</button>
+              <a id="kakao-map-direct-bundle" href="https://map.kakao.com/?q=한국항공대학교" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-primary btn-pill-sm">📍 길찾기 바로가기</a>
+            </div>
+          </div>
+          <div style="position: relative; width: 100%; height: 380px; border-radius: 24px; overflow: hidden; border: 2.5px solid var(--border-glass); box-shadow: 0 10px 30px rgba(186, 230, 253, 0.25);">
+            <div id="kakao-school-map-bundle" style="width: 100%; height: 100%; background: #E0F2FE; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: 700;">
+              ⏳ 지도를 불러오는 중입니다... 🐾
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const copyBtn = mapSection.querySelector("#copy-school-addr-bundle");
+    copyBtn.addEventListener("click", () => {
+      const addrText = mapSection.querySelector("#school-address-text-bundle").textContent.replace("📍 ", "");
+      copyToClipboard(addrText, `학교 주소가 클립보드에 복사되었습니다!`);
+    });
+
+    initKakaoMapBundleAsync(mapSection);
+    return mapSection;
+  }
+
+  async function initKakaoMapBundleAsync(containerEl) {
+    try {
+      let config = {
+        schoolName: "한국항공대학교 (Korea Aerospace University)",
+        schoolAddress: "경기도 고양시 덕양구 항공대학로 76",
+        lat: 37.600779,
+        lng: 126.864742,
+        mapApiKey: "lyYq0Z8STxd99nxT0"
+      };
+
+      try {
+        const res = await fetch("/api/map-config");
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.status === "success") config = data;
+        }
+      } catch (e) {}
+
+      const addrEl = containerEl.querySelector("#school-address-text-bundle");
+      const linkEl = containerEl.querySelector("#kakao-map-direct-bundle");
+      if (addrEl) addrEl.textContent = `📍 ${config.schoolAddress}`;
+      if (linkEl) linkEl.href = `https://map.kakao.com/?q=${encodeURIComponent(config.schoolName)}`;
+
+      if (typeof window.kakao === "undefined" || !window.kakao.maps) {
+        await new Promise((resolve, reject) => {
+          if (document.getElementById("kakao-map-sdk-script")) return resolve();
+          const script = document.createElement("script");
+          script.id = "kakao-map-sdk-script";
+          script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${config.mapApiKey}&autoload=false`;
+          script.onload = () => resolve();
+          script.onerror = (e) => reject(e);
+          document.head.appendChild(script);
+        });
+      }
+
+      const mapContainer = containerEl.querySelector("#kakao-school-map-bundle");
+      if (!mapContainer || typeof window.kakao === "undefined" || !window.kakao.maps) {
+        renderMapFallbackBundleUI(mapContainer, config);
+        return;
+      }
+
+      window.kakao.maps.load(() => {
+        mapContainer.innerHTML = "";
+        const loc = new window.kakao.maps.LatLng(config.lat, config.lng);
+        const map = new window.kakao.maps.Map(mapContainer, { center: loc, level: 3 });
+        map.addControl(new window.kakao.maps.ZoomControl(), window.kakao.maps.ControlPosition.RIGHT);
+        const marker = new window.kakao.maps.Marker({ position: loc, map: map });
+        const infowindow = new window.kakao.maps.InfoWindow({
+          position: loc,
+          content: `<div style="padding:10px 14px; background:#FFFFFF; border-radius:14px; border:2px solid #38BDF8; font-size:12px; font-weight:800; color:#0F172A; text-align:center;">🐾 ${config.schoolName} 🐱</div>`
+        });
+        infowindow.open(map, marker);
+      });
+    } catch (err) {
+      renderMapFallbackBundleUI(containerEl.querySelector("#kakao-school-map-bundle"), { schoolName: "학교 위치 안내", schoolAddress: "서울특별시 광진구 능동로 209" });
+    }
+  }
+
+  function renderMapFallbackBundleUI(container, config) {
+    if (!container) return;
+    container.innerHTML = `
+      <div style="text-align: center; padding: 24px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; border: 2px solid var(--color-primary);">
+        <div style="font-size: 2.2rem; margin-bottom: 8px;">🏫 🐾</div>
+        <h4 style="font-size: 1.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">${config.schoolName}</h4>
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 16px;">${config.schoolAddress}</p>
+        <a href="https://map.kakao.com/?q=${encodeURIComponent(config.schoolName)}" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-primary btn-pill-sm">📍 카카오맵에서 위치 보기</a>
+      </div>
+    `;
+  }
+
   // 8. 메인 애플리케이션 렌더 루프
   function renderApp() {
     appRoot.innerHTML = "";
@@ -803,6 +1163,7 @@
     mainEl.appendChild(renderHero(state.data.profile));
     mainEl.appendChild(renderBioSection(state.data.profile));
     mainEl.appendChild(renderProjectsSection(state.data.projects));
+    mainEl.appendChild(renderSchoolMapSection());
     mainEl.appendChild(renderContactSection());
     appRoot.appendChild(mainEl);
 

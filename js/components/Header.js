@@ -1,6 +1,6 @@
 /**
  * KIM DOWOOK AI Portfolio - 상단 헤더 및 네비게이션 컴포넌트 (Header.js)
- * 로고, 섹션 링크 및 관리자 모드 토글 버튼 제공
+ * 다크 슬레이트 글래스 헤더 바 & 순백색(#FFFFFF) 고대비 네비게이션 텍스트
  */
 
 export function renderHeader(isAdmin, currentView, onAdminClick, onGoAdminConsole) {
@@ -12,31 +12,34 @@ export function renderHeader(isAdmin, currentView, onAdminClick, onGoAdminConsol
     left: 0;
     width: 100%;
     z-index: 100;
-    background: rgba(11, 15, 23, 0.75);
+    background: rgba(15, 23, 42, 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-glass);
-    padding: 18px 0;
+    border-bottom: 1.5px solid rgba(56, 189, 248, 0.3);
+    padding: 14px 0;
+    box-shadow: 0 8px 32px rgba(15, 23, 42, 0.3);
   `;
 
   const btnText = currentView === 'admin' 
-    ? '🌐 메인 포트폴리오' 
-    : (isAdmin ? '🔑 관리자 대시보드' : '🔑 관리자 로그인');
+    ? '🐾 메인 포트폴리오' 
+    : (isAdmin ? '👑 관리자 대시보드' : '🔑 관리자 로그인');
 
   header.innerHTML = `
     <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
-      <!-- 브랜드 로고 -->
-      <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px; font-size: 1.35rem; font-weight: 800; color: var(--text-main);">
+      <!-- 귀여운 고양이 브랜드 로고 -->
+      <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; text-decoration: none;">
+        <span style="font-size: 1.3rem;" class="cat-bounce">🐾</span>
         <span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DOWOOK.AI</span>
+        <span style="font-size: 1.2rem;">🐱</span>
       </a>
 
-      <!-- 글로벌 네비게이션 메뉴 (캡슐형 스타일) -->
-      <nav style="display: flex; align-items: center; gap: 24px;">
-        <a href="#about" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#00F0FF'" onmouseout="this.style.color='#94A3B8'">소개</a>
-        <a href="#projects" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#00F0FF'" onmouseout="this.style.color='#94A3B8'">작업물</a>
-        <a href="#contact" style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#00F0FF'" onmouseout="this.style.color='#94A3B8'">연락처</a>
+      <!-- 글로벌 네비게이션 메뉴 (순백색 #FFFFFF 고대비 텍스트 & 스카이블루 호버 이펙트) -->
+      <nav style="display: flex; align-items: center; gap: 10px;">
+        <a href="#about" class="nav-item-link" style="color: #FFFFFF; font-weight: 800; font-size: 1.05rem; padding: 8px 18px; border-radius: var(--radius-pill); transition: all 0.2s ease; text-decoration: none;" onmouseover="this.style.color='#38BDF8'; this.style.backgroundColor='rgba(56, 189, 248, 0.2)'" onmouseout="this.style.color='#FFFFFF'; this.style.backgroundColor='transparent'">소개</a>
+        <a href="#projects" class="nav-item-link" style="color: #FFFFFF; font-weight: 800; font-size: 1.05rem; padding: 8px 18px; border-radius: var(--radius-pill); transition: all 0.2s ease; text-decoration: none;" onmouseover="this.style.color='#38BDF8'; this.style.backgroundColor='rgba(56, 189, 248, 0.2)'" onmouseout="this.style.color='#FFFFFF'; this.style.backgroundColor='transparent'">작업물</a>
+        <a href="#contact" class="nav-item-link" style="color: #FFFFFF; font-weight: 800; font-size: 1.05rem; padding: 8px 18px; border-radius: var(--radius-pill); transition: all 0.2s ease; text-decoration: none;" onmouseover="this.style.color='#38BDF8'; this.style.backgroundColor='rgba(56, 189, 248, 0.2)'" onmouseout="this.style.color='#FFFFFF'; this.style.backgroundColor='transparent'">연락처</a>
         
-        <!-- 관리자 인증 / 전용 대시보드 접속 버튼 -->
+        <!-- 관리자 접속 버튼 -->
         <button id="admin-auth-btn" class="btn-pill btn-pill-sm ${isAdmin ? 'btn-pill-primary' : 'btn-pill-secondary'}" style="margin-left: 12px;">
           ${btnText}
         </button>
@@ -58,4 +61,3 @@ export function renderHeader(isAdmin, currentView, onAdminClick, onGoAdminConsol
 
   return header;
 }
-
