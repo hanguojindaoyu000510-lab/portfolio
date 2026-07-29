@@ -60,16 +60,16 @@
         tags: ["#VisionAI", "#Gemini", "#Canvas", "#React"],
         demoUrl: "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true",
         githubUrl: "https://github.com/example/canvas-ai",
-        imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop&q=60"
+        imageUrl: "./assets/images/anime_robot_canvas.png"
       },
       {
         id: 3,
-        title: "🎨 AI 시각 이미지 갤러리 & 프롬프트 생성기",
-        description: "원하는 이미지 스타일을 프롬프트 명령어로 변환하고 실시간 렌더링을 돕는 유틸리티 웹앱",
-        tags: ["#Midjourney", "#DALL-E3", "#Vite", "#CSS Glass"],
-        demoUrl: "https://example.com/gallery",
-        githubUrl: "https://github.com/example/gallery",
-        imageUrl: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&auto=format&fit=crop&q=60"
+        title: "🎓 대학생 창업 성향 테스트하기!",
+        description: "대학생들의 창업 성향과 잠재력을 다각도로 분석하여 맞춤형 창업 유형 및 가이드를 제공하는 테스트 웹 서비스",
+        tags: ["#Vite", "#React", "#Startup", "#Vercel"],
+        demoUrl: "https://holymoly-orpin.vercel.app/",
+        githubUrl: "https://github.com/example/startup-test",
+        imageUrl: "./assets/images/startup_test_thumb.png"
       }
     ]
   };
@@ -91,6 +91,15 @@
           p2.description = "캔버스에 그린 그림과 이미지를 AI가 실시간으로 분석하고 심도 있게 해석해 주는 멀티모달 AI 서비스";
           p2.tags = ["#VisionAI", "#Gemini", "#Canvas", "#React"];
           p2.demoUrl = "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true";
+          p2.imageUrl = "./assets/images/anime_robot_canvas.png";
+        }
+        const p3 = data.projects.find(p => p.id === 3);
+        if (p3) {
+          p3.title = "🎓 대학생 창업 성향 테스트하기!";
+          p3.description = "대학생들의 창업 성향과 잠재력을 다각도로 분석하여 맞춤형 창업 유형 및 가이드를 제공하는 테스트 웹 서비스";
+          p3.tags = ["#Vite", "#React", "#Startup", "#Vercel"];
+          p3.demoUrl = "https://holymoly-orpin.vercel.app/";
+          p3.imageUrl = "./assets/images/startup_test_thumb.png";
         }
       }
       return data;
@@ -152,6 +161,24 @@
           githubUrl: row.github_url || "",
           imageUrl: row.image_url || ""
         }));
+      }
+      if (result.projects) {
+        const p2 = result.projects.find(p => p.id === 2);
+        if (p2) {
+          p2.title = "🎨 AI 캔버스 그림 해석기";
+          p2.description = "캔버스에 그린 그림과 이미지를 AI가 실시간으로 분석하고 심도 있게 해석해 주는 멀티모달 AI 서비스";
+          p2.tags = ["#VisionAI", "#Gemini", "#Canvas", "#React"];
+          p2.demoUrl = "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true";
+          p2.imageUrl = "./assets/images/anime_robot_canvas.png";
+        }
+        const p3 = result.projects.find(p => p.id === 3);
+        if (p3) {
+          p3.title = "🎓 대학생 창업 성향 테스트하기!";
+          p3.description = "대학생들의 창업 성향과 잠재력을 다각도로 분석하여 맞춤형 창업 유형 및 가이드를 제공하는 테스트 웹 서비스";
+          p3.tags = ["#Vite", "#React", "#Startup", "#Vercel"];
+          p3.demoUrl = "https://holymoly-orpin.vercel.app/";
+          p3.imageUrl = "./assets/images/startup_test_thumb.png";
+        }
       }
       savePortfolioData(result);
       return result;

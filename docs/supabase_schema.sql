@@ -77,16 +77,16 @@ VALUES
     '["#VisionAI", "#Gemini", "#Canvas", "#React"]'::jsonb,
     'https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true',
     'https://github.com/example/canvas-ai',
-    'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop&q=60'
+    './assets/images/anime_robot_canvas.png'
 ),
 (
     3,
-    '🎨 AI 시각 이미지 갤러리 & 프롬프트 생성기',
-    '원하는 이미지 스타일을 프롬프트 명령어로 변환하고 실시간 렌더링을 돕는 유틸리티 웹앱',
-    '["#Midjourney", "#DALL-E3", "#Vite", "#CSS Glass"]'::jsonb,
-    'https://example.com/gallery',
-    'https://github.com/example/gallery',
-    'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&auto=format&fit=crop&q=60'
+    '🎓 대학생 창업 성향 테스트하기!',
+    '대학생들의 창업 성향과 잠재력을 다각도로 분석하여 맞춤형 창업 유형 및 가이드를 제공하는 테스트 웹 서비스',
+    '["#Vite", "#React", "#Startup", "#Vercel"]'::jsonb,
+    'https://holymoly-orpin.vercel.app/',
+    'https://github.com/example/startup-test',
+    './assets/images/startup_test_thumb.png'
 );
 
 -- 시퀀스 동기화
