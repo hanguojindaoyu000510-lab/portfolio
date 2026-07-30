@@ -49,7 +49,7 @@
         title: "🤖 AI 운세 쿠키 생성기",
         description: "오늘의 운세와 용기를 북돋아 주는 격언을 Generative AI가 맞춤 생성해 주는 웹 서비스",
         tags: ["#GPT-4o", "#JavaScript", "#Web Audio", "#CSS3"],
-        demoUrl: "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html",
+        demoUrl: "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/",
         githubUrl: "https://github.com/example/fortune",
         imageUrl: "./assets/images/fortune_cookie_burst.png"
       },
@@ -88,7 +88,7 @@
         const p1 = data.projects.find(p => p.id == 1 || (p.title && p.title.includes("운세")));
         if (p1) {
           p1.title = "🤖 AI 운세 쿠키 생성기";
-          p1.demoUrl = "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html";
+          p1.demoUrl = "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/";
           p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
         }
         const p2 = data.projects.find(p => p.id == 2 || (p.title && p.title.includes("캔버스")));
@@ -173,7 +173,7 @@
         const p1 = result.projects.find(p => p.id == 1 || (p.title && p.title.includes("운세")));
         if (p1) {
           p1.title = "🤖 AI 운세 쿠키 생성기";
-          p1.demoUrl = "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html";
+          p1.demoUrl = "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/";
           p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
         }
         const p2 = result.projects.find(p => p.id == 2 || (p.title && p.title.includes("캔버스")));
