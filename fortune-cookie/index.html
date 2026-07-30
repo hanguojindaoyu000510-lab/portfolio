@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 운세 쿠키 생성기 | DOWOOK.AI Portfolio</title>
+    
+    <!-- 웹 폰트 로드: Plus Jakarta Sans 및 JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 스카이 민트 고양이 AI 테마 커스텀 CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 배경 인터랙티브 파티클 캔버스 -->
+    <canvas id="bg-particles"></canvas>
+
+    <!-- 글로벌 다크 글래스 상단 헤더 바 (포트폴리오 통일) -->
+    <header class="header-nav" style="position: sticky; top: 0; left: 0; width: 100%; z-index: 100; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1.5px solid rgba(56, 189, 248, 0.3); padding: 14px 0; box-shadow: 0 8px 32px rgba(15, 23, 42, 0.3);">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1000px; margin: 0 auto; padding: 0 24px;">
+            <!-- 귀여운 고양이 브랜드 로고 -->
+            <a href="../index.html" class="logo" style="display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: #FFFFFF; text-decoration: none;">
+                <span style="font-size: 1.2rem; filter: brightness(0) invert(1);" class="cat-bounce">🐾</span>
+                <span style="background: linear-gradient(135deg, #38BDF8 0%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DOWOOK.AI</span>
+                <span style="font-size: 1.1rem;">🐱</span>
+            </a>
+
+            <!-- 포트폴리오 돌아가기 캡슐 버튼 -->
+            <a href="../index.html" class="btn-pill-back" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 9999px; background: linear-gradient(135deg, #38BDF8 0%, #10B981 100%); color: #FFFFFF; font-weight: 700; font-size: 0.85rem; text-decoration: none; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35); transition: all 0.2s ease;">
+                🚀 메인 포트폴리오 돌아가기
+            </a>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- 메인 헤더 영역 -->
+        <header class="app-header">
+            <div style="margin-bottom: 12px;">
+                <span class="tag-pill-badge">
+                    🤖 AI FORTUNE COOKIE 🐾
+                </span>
+            </div>
+            <h1 class="logo-text">AI <span class="gradient-text">운세 쿠키</span> 생성기</h1>
+            <p class="subtitle">쿠키를 터뜨려 오늘의 맞춤 운세와 지혜로운 명언을 확인하세요!</p>
+        </header>
+
+        <!-- 카테고리 캡슐 선택 태그 모음 -->
+        <div class="category-selector" id="category-selector">
+            <button class="cat-chip active" data-category="all">✨ 전체 보기</button>
+            <button class="cat-chip" data-category="success">🔥 성공 & 열정</button>
+            <button class="cat-chip" data-category="wisdom">💡 지혜 & 성장</button>
+            <button class="cat-chip" data-category="healing">🌿 행복 & 힐링</button>
+            <button class="cat-chip" data-category="love">💖 사랑 & 관계</button>
+        </div>
+
+        <!-- 메인 쿠키 깨뜨리기 스테이지 -->
+        <main class="main-content">
+            <div class="cookie-stage" id="cookie-stage">
+                <!-- 민트 스카이 후광 에리어 -->
+                <div class="glow-aura" id="glow-aura"></div>
+
+                <!-- 인터랙티브 SVG 포춘 쿠키 -->
+                <div class="cookie-wrapper" id="cookie-wrapper">
+                    <svg class="fortune-cookie-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- Gold Outer Gradient -->
+                            <radialGradient id="gold-grad-left" cx="35%" cy="40%" r="60%">
+                                <stop offset="0%" stop-color="#FFF3C4"/>
+                                <stop offset="40%" stop-color="#FCD34D"/>
+                                <stop offset="85%" stop-color="#D97706"/>
+                                <stop offset="100%" stop-color="#92400E"/>
+                            </radialGradient>
+                            <radialGradient id="gold-grad-right" cx="65%" cy="40%" r="60%">
+                                <stop offset="0%" stop-color="#FFF3C4"/>
+                                <stop offset="40%" stop-color="#FCD34D"/>
+                                <stop offset="85%" stop-color="#D97706"/>
+                                <stop offset="100%" stop-color="#92400E"/>
+                            </radialGradient>
+                            
+                            <!-- Shadow Gradients for Inner Folds -->
+                            <linearGradient id="inner-shadow-left" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#451A03" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#B45309" stop-opacity="0"/>
+                            </linearGradient>
+                            <linearGradient id="inner-shadow-right" x1="100%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#451A03" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#B45309" stop-opacity="0"/>
+                            </linearGradient>
+
+                            <!-- Highlights -->
+                            <linearGradient id="highlight-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#FCD34D" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Left Half Group -->
+                        <g id="cookie-left" class="cookie-half">
+                            <path d="M 200 130 C 130 110, 110 180, 140 230 C 120 200, 125 150, 185 145 Z" fill="url(#inner-shadow-left)" />
+                            <path d="M 200 100 C 110 90, 60 170, 95 240 C 120 290, 185 295, 200 245 C 185 220, 175 160, 200 100 Z" fill="url(#gold-grad-left)" filter="drop-shadow(-4px 6px 12px rgba(15,23,42,0.25))" />
+                            <path d="M 200 100 C 180 150, 185 210, 200 245 C 190 220, 182 170, 200 100 Z" fill="#78350F" opacity="0.4" />
+                            <path d="M 200 100 C 120 95, 80 160, 105 215" fill="none" stroke="url(#highlight-grad)" stroke-width="4" stroke-linecap="round" opacity="0.6" />
+                        </g>
+
+                        <!-- Right Half Group -->
+                        <g id="cookie-right" class="cookie-half">
+                            <path d="M 200 130 C 270 110, 290 180, 260 230 C 280 200, 275 150, 215 145 Z" fill="url(#inner-shadow-right)" />
+                            <path d="M 200 100 C 290 90, 340 170, 305 240 C 280 290, 215 295, 200 245 C 215 220, 225 160, 200 100 Z" fill="url(#gold-grad-right)" filter="drop-shadow(4px 6px 12px rgba(15,23,42,0.25))" />
+                            <path d="M 200 100 C 220 150, 215 210, 200 245 C 210 220, 218 170, 200 100 Z" fill="#78350F" opacity="0.4" />
+                            <path d="M 200 100 C 280 95, 320 160, 295 215" fill="none" stroke="url(#highlight-grad)" stroke-width="4" stroke-linecap="round" opacity="0.6" />
+                        </g>
+                    </svg>
+
+                    <!-- 클릭 안내 레이블 -->
+                    <div class="click-instruction" id="click-instruction">
+                        <span class="pulse-icon"><i class="fa-solid fa-hand-pointer"></i></span>
+                        <span>🥠 쿠키를 깨뜨려보세요! 🐾</span>
+                    </div>
+                </div>
+
+                <!-- 운세 종이 페이퍼 (글래스모피즘 & 스카이 민트 테두리) -->
+                <div class="fortune-paper-container" id="fortune-paper-container">
+                    <div class="fortune-paper" id="fortune-paper">
+                        <div class="fortune-content">
+                            <span class="fortune-tag">✨ TODAY'S AI FORTUNE</span>
+                            <div class="fortune-text" id="fortune-text">
+                                <!-- 명언 텍스트 타이핑 -->
+                            </div>
+                            <div class="fortune-author" id="fortune-author"></div>
+                            <div class="lucky-numbers" id="lucky-numbers">
+                                🍀 행운의 번호: <span class="num-span">0</span> <span class="num-span">0</span> <span class="num-span">0</span> <span class="num-span">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 액션 캡슐 버튼 모음 -->
+            <div class="action-panel" id="action-panel">
+                <button class="action-btn share-btn" id="copy-btn">
+                    <i class="fa-regular fa-copy"></i> 명언 복사하기
+                </button>
+                <button class="action-btn next-btn" id="reset-btn">
+                    <i class="fa-solid fa-arrows-rotate"></i> 🥠 새 쿠키 받기
+                </button>
+            </div>
+        </main>
+
+        <!-- 히스토리 저장 섹션 -->
+        <section class="history-section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> 오늘 획득한 명언 히스토리</h2>
+                <button class="clear-history-btn" id="clear-history-btn">전체 삭제</button>
+            </div>
+            <div class="history-list-wrapper">
+                <div class="history-list" id="history-list">
+                    <div class="empty-history" id="empty-history">
+                        아직 오픈한 쿠키가 없습니다. 위 쿠키를 클릭해 첫 운세를 확인해보세요! 🐾
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 사운드 토글 플로팅 버튼 -->
+        <div class="floating-controls">
+            <button class="control-btn" id="sound-toggle" title="소리 켜기/끄기">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ES 모듈 JS 실행 -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

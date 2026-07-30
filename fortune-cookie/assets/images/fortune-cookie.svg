@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+    <defs>
+        <!-- Gold Outer Gradient -->
+        <radialGradient id="gold-grad-left" cx="35%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#ffe8a3"/>
+            <stop offset="40%" stop-color="#f5c26b"/>
+            <stop offset="85%" stop-color="#b87822"/>
+            <stop offset="100%" stop-color="#7a4607"/>
+        </radialGradient>
+        <radialGradient id="gold-grad-right" cx="65%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#ffe8a3"/>
+            <stop offset="40%" stop-color="#f5c26b"/>
+            <stop offset="85%" stop-color="#b87822"/>
+            <stop offset="100%" stop-color="#7a4607"/>
+        </radialGradient>
+        
+        <!-- Shadow Gradients for Inner Folds -->
+        <linearGradient id="inner-shadow-left" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3d2000" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#b87822" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="inner-shadow-right" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#3d2000" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#b87822" stop-opacity="0"/>
+        </linearGradient>
+
+        <!-- Subtle Inner Glow for Crack Highlight -->
+        <linearGradient id="highlight-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#ffe8a3" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Left Half Group -->
+    <g id="cookie-left" class="cookie-half">
+        <path d="M 200 130 C 130 110, 110 180, 140 230 C 120 200, 125 150, 185 145 Z" fill="url(#inner-shadow-left)" />
+        <path d="M 200 100 C 110 90, 60 170, 95 240 C 120 290, 185 295, 200 245 C 185 220, 175 160, 200 100 Z" fill="url(#gold-grad-left)" filter="drop-shadow(-4px 6px 12px rgba(0,0,0,0.3))" />
+        <path d="M 200 100 C 180 150, 185 210, 200 245 C 190 220, 182 170, 200 100 Z" fill="#7a4607" opacity="0.4" />
+        <path d="M 200 100 C 120 95, 80 160, 105 215" fill="none" stroke="url(#highlight-grad)" stroke-width="4" stroke-linecap="round" opacity="0.5" />
+    </g>
+
+    <!-- Right Half Group -->
+    <g id="cookie-right" class="cookie-half">
+        <path d="M 200 130 C 270 110, 290 180, 260 230 C 280 200, 275 150, 215 145 Z" fill="url(#inner-shadow-right)" />
+        <path d="M 200 100 C 290 90, 340 170, 305 240 C 280 290, 215 295, 200 245 C 215 220, 225 160, 200 100 Z" fill="url(#gold-grad-right)" filter="drop-shadow(4px 6px 12px rgba(0,0,0,0.3))" />
+        <path d="M 200 100 C 220 150, 215 210, 200 245 C 210 220, 218 170, 200 100 Z" fill="#7a4607" opacity="0.4" />
+        <path d="M 200 100 C 280 95, 320 160, 295 215" fill="none" stroke="url(#highlight-grad)" stroke-width="4" stroke-linecap="round" opacity="0.5" />
+    </g>
+</svg>
