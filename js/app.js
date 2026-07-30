@@ -125,20 +125,38 @@ function renderApp() {
 }
 
 /**
+ * 관리자 비밀번호 안전 해시(SHA-256) 검증 함수
+ */
+async function verifyAdminPassword(inputPassword) {
+  try {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(inputPassword);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    // SHA-256 hash for "1234"
+    return hashHex === "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
+  } catch (e) {
+    return inputPassword === "1234";
+  }
+}
+
+/**
  * 관리자 로그인 모달 열기
  */
 function openAdminLoginModal() {
   let modal = document.getElementById("admin-modal");
   if (!modal) {
-    modal = renderAdminAuthModal((password) => {
-      if (password === "1234") { // 기본 관리자 암호
+    modal = renderAdminAuthModal(async (password) => {
+      const isValid = await verifyAdminPassword(password);
+      if (isValid) {
         state.isAdmin = true;
         state.currentView = "admin";
         modal.classList.remove("active");
         alert("🔓 관리자 인증 성공! 전용 대시보드(Admin Console)로 이동합니다.");
         renderApp();
       } else {
-        alert("❌ 비밀번호가 올바르지 않습니다. (기본 암호: 1234)");
+        alert("❌ 비밀번호가 올바르지 않습니다.");
       }
     });
     document.body.appendChild(modal);

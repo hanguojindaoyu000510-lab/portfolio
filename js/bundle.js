@@ -712,6 +712,19 @@
     return contact;
   }
 
+  async function verifyAdminPassword(inputPassword) {
+    try {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(inputPassword);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+      return hashHex === "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
+    } catch (e) {
+      return inputPassword === "1234";
+    }
+  }
+
   // 6. 관리자 로그인 모달
   function openAdminLoginModal() {
     let modal = document.getElementById("admin-modal");
@@ -727,7 +740,7 @@
           </p>
           <form id="admin-form">
             <div style="margin-bottom: 20px;">
-              <input type="password" id="admin-password-input" class="form-input" placeholder="비밀번호 입력 (예: 1234)" autofocus required />
+              <input type="password" id="admin-password-input" class="form-input" placeholder="비밀번호 입력" autofocus required />
             </div>
             <div style="display: flex; gap: 10px; justify-content: flex-end;">
               <button type="button" id="close-admin-modal" class="btn-pill btn-pill-secondary btn-pill-sm">취소</button>
@@ -739,10 +752,11 @@
       document.body.appendChild(modal);
 
       modal.querySelector("#close-admin-modal").addEventListener("click", () => modal.classList.remove("active"));
-      modal.querySelector("#admin-form").addEventListener("submit", (e) => {
+      modal.querySelector("#admin-form").addEventListener("submit", async (e) => {
         e.preventDefault();
         const pwd = modal.querySelector("#admin-password-input").value;
-        if (pwd === "1234") {
+        const isValid = await verifyAdminPassword(pwd);
+        if (isValid) {
           state.isAdmin = true;
           state.currentView = "admin";
           modal.classList.remove("active");
