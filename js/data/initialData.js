@@ -78,13 +78,13 @@ export function getPortfolioData() {
   try {
     const data = JSON.parse(stored);
     if (data && data.projects) {
-      const p1 = data.projects.find(p => p.id === 1);
+      const p1 = data.projects.find(p => p.id == 1 || (p.title && p.title.includes("운세")));
       if (p1) {
         p1.title = "🤖 AI 운세 쿠키 생성기";
         p1.demoUrl = "https://fortune-cookie-wheat.vercel.app/";
         p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
       }
-      const p2 = data.projects.find(p => p.id === 2);
+      const p2 = data.projects.find(p => p.id == 2 || (p.title && p.title.includes("캔버스")));
       if (p2) {
         p2.title = "🎨 AI 캔버스 그림 해석기";
         p2.description = "캔버스에 그린 그림과 이미지를 AI가 실시간으로 분석하고 심도 있게 해석해 주는 멀티모달 AI 서비스";
@@ -92,7 +92,7 @@ export function getPortfolioData() {
         p2.demoUrl = "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true";
         p2.imageUrl = "./assets/images/anime_robot_canvas.png";
       }
-      const p3 = data.projects.find(p => p.id === 3);
+      const p3 = data.projects.find(p => p.id == 3 || (p.title && p.title.includes("창업")));
       if (p3) {
         p3.title = "🎓 대학생 창업 성향 테스트하기!";
         p3.description = "대학생들의 창업 성향과 잠재력을 다각도로 분석하여 맞춤형 창업 유형 및 가이드를 제공하는 테스트 웹 서비스";
@@ -100,6 +100,7 @@ export function getPortfolioData() {
         p3.demoUrl = "https://holymoly-orpin.vercel.app/";
         p3.imageUrl = "./assets/images/startup_test_thumb.png";
       }
+      savePortfolioData(data);
     }
     return data;
   } catch (e) {
@@ -172,13 +173,13 @@ export async function fetchPortfolioDataFromSupabase() {
     }
 
     if (result.projects) {
-      const p1 = result.projects.find(p => p.id === 1);
+      const p1 = result.projects.find(p => p.id == 1 || (p.title && p.title.includes("운세")));
       if (p1) {
         p1.title = "🤖 AI 운세 쿠키 생성기";
         p1.demoUrl = "https://fortune-cookie-wheat.vercel.app/";
         p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
       }
-      const p2 = result.projects.find(p => p.id === 2);
+      const p2 = result.projects.find(p => p.id == 2 || (p.title && p.title.includes("캔버스")));
       if (p2) {
         p2.title = "🎨 AI 캔버스 그림 해석기";
         p2.description = "캔버스에 그린 그림과 이미지를 AI가 실시간으로 분석하고 심도 있게 해석해 주는 멀티모달 AI 서비스";
@@ -186,7 +187,7 @@ export async function fetchPortfolioDataFromSupabase() {
         p2.demoUrl = "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true";
         p2.imageUrl = "./assets/images/anime_robot_canvas.png";
       }
-      const p3 = result.projects.find(p => p.id === 3);
+      const p3 = result.projects.find(p => p.id == 3 || (p.title && p.title.includes("창업")));
       if (p3) {
         p3.title = "🎓 대학생 창업 성향 테스트하기!";
         p3.description = "대학생들의 창업 성향과 잠재력을 다각도로 분석하여 맞춤형 창업 유형 및 가이드를 제공하는 테스트 웹 서비스";
