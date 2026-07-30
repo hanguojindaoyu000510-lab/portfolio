@@ -86,6 +86,7 @@
     try {
       const data = JSON.parse(stored);
       if (data && data.projects) {
+        data.projects = data.projects.filter(p => !p.title.includes("테스트 AI") && !p.description.includes("Playwright E2E"));
         const p1 = data.projects.find(p => p.id == 1 || (p.title && p.title.includes("운세")));
         if (p1) {
           p1.title = "🤖 AI 운세 쿠키 생성기";

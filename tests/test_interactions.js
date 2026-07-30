@@ -80,6 +80,19 @@ async function runTests() {
   } catch (error) {
     console.error("❌ [테스트 실패]:", error);
   } finally {
+    try {
+      await page.evaluate(() => {
+        const key = "dowook_ai_portfolio_data";
+        const stored = localStorage.getItem(key);
+        if (stored) {
+          const data = JSON.parse(stored);
+          if (data && data.projects) {
+            data.projects = data.projects.filter(p => !p.title.includes("테스트 AI") && !p.description.includes("Playwright E2E"));
+            localStorage.setItem(key, JSON.stringify(data));
+          }
+        }
+      });
+    } catch (e) {}
     await browser.close();
     if (serverProcess) serverProcess.kill();
     console.log("\n🎉 [최종 검증 완료] 모든 레이아웃 및 기능이 prd.md & design.md 스펙에 맞춰 완벽하게 동작합니다!\n");
