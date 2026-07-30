@@ -60,7 +60,8 @@
         tags: ["#VisionAI", "#Gemini", "#Canvas", "#React"],
         demoUrl: "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true",
         githubUrl: "https://github.com/example/canvas-ai",
-        imageUrl: "./assets/images/anime_robot_canvas.png"
+        imageUrl: "./assets/images/anime_robot_canvas.png",
+        demoNotice: "💡 접속 안내: Google AI Studio 환경 특성상 그림 캔버스가 뜨기까지 약 5~10초 정도 로딩 시간이 소요될 수 있습니다."
       },
       {
         id: 3,
@@ -98,6 +99,7 @@
           p2.tags = ["#VisionAI", "#Gemini", "#Canvas", "#React"];
           p2.demoUrl = "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true";
           p2.imageUrl = "./assets/images/anime_robot_canvas.png";
+          p2.demoNotice = "💡 접속 안내: Google AI Studio 환경 특성상 그림 캔버스가 뜨기까지 약 5~10초 정도 로딩 시간이 소요될 수 있습니다.";
         }
         const p3 = data.projects.find(p => p.id == 3 || (p.title && p.title.includes("창업")));
         if (p3) {
@@ -422,6 +424,55 @@
     return bioSection;
   }
 
+  function openDemoNoticeModal(project, url) {
+    const existingModal = document.getElementById("demo-notice-modal");
+    if (existingModal) existingModal.remove();
+
+    const modal = document.createElement("div");
+    modal.className = "modal-overlay active";
+    modal.id = "demo-notice-modal";
+
+    modal.innerHTML = `
+      <div class="modal-content" style="max-width: 460px; text-align: center; border: 2px solid #F59E0B; box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.3);">
+        <div style="font-size: 2.5rem; margin-bottom: 8px; animation: pulse 1.5s infinite;">🎨 ⏳</div>
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 12px;">
+          Google AI Studio 데모 접속 안내
+        </h3>
+        <div style="text-align: left; background: rgba(254, 243, 199, 0.6); border: 1.5px dashed #F59E0B; padding: 16px; border-radius: 16px; margin-bottom: 20px; font-size: 0.9rem; color: #78350F; line-height: 1.6;">
+          <p style="margin-bottom: 6px; font-weight: 800; font-size: 0.95rem;">🐾 캔버스 생성 대기 안내</p>
+          Google AI Studio 앱 환경 특성상 <strong>그림을 그릴 캔버스 공간이 뜨기까지 약 5~10초간 로딩 시간</strong>이 소요됩니다.<br/><br/>
+          화면이 잠시 비어보이더라도 오류가 아니니, <strong>접속 후 5~10초만 기다려주시면</strong> 캔버스가 활성화됩니다! 😊
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 20px; font-size: 0.85rem; color: var(--text-muted);">
+          <input type="checkbox" id="hide-demo-notice-check" style="cursor: pointer; width: 16px; height: 16px; accent-color: var(--color-primary);" />
+          <label for="hide-demo-notice-check" style="cursor: pointer; user-select: none;">다음부터 안내 없이 바로 이동하기</label>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+          <button id="cancel-demo-notice-btn" class="btn-pill btn-pill-secondary btn-pill-sm" style="flex: 1;">닫기</button>
+          <button id="confirm-demo-notice-btn" class="btn-pill btn-pill-primary btn-pill-sm" style="flex: 1.4;">🚀 바로 데모 접속</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const closeModal = () => {
+      modal.classList.remove("active");
+      setTimeout(() => modal.remove(), 200);
+    };
+
+    modal.querySelector("#cancel-demo-notice-btn").addEventListener("click", closeModal);
+
+    modal.querySelector("#confirm-demo-notice-btn").addEventListener("click", () => {
+      const isChecked = modal.querySelector("#hide-demo-notice-check").checked;
+      if (isChecked) {
+        localStorage.setItem(`hide_demo_notice_${project.id}`, "true");
+      }
+      closeModal();
+      window.open(url, "_blank");
+    });
+  }
+
   function renderProjectsSection(projects) {
     const section = document.createElement("section");
     section.id = "projects";
@@ -454,10 +505,19 @@
                   ${p.tags.map(t => `<span class="tag-pill tag-pill-ai">${t}</span>`).join('')}
                 </div>
                 <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">${p.title}</h3>
-                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">${p.description}</p>
+                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: ${p.demoNotice ? '14px' : '24px'};">${p.description}</p>
+                ${p.demoNotice ? `
+                  <div class="demo-notice-box">
+                    <span style="font-size: 1.1rem; flex-shrink: 0;">⏳</span>
+                    <div>
+                      <strong style="color: #92400E;">접속 안내 (약 5~10초 대기)</strong><br/>
+                      Google AI Studio 접속 후 캔버스가 뜨기까지 5~10초간 로딩 시간이 소요됩니다.
+                    </div>
+                  </div>
+                ` : ''}
               </div>
               <div style="display: flex; gap: 10px;">
-                <a href="${p.demoUrl}" target="_self" class="btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; text-align: center; text-decoration: none;">🐾 데모 접속</a>
+                <a href="${p.demoUrl}" target="_blank" data-id="${p.id}" class="demo-access-btn btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; text-align: center; text-decoration: none;">🐾 데모 접속</a>
                 <a href="${p.githubUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;">💻 Github</a>
               </div>
             </div>
@@ -473,6 +533,21 @@
         renderApp();
       });
     }
+
+    const demoBtns = section.querySelectorAll(".demo-access-btn");
+    demoBtns.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = parseInt(btn.dataset.id, 10);
+        const proj = projects.find(p => p.id === id);
+        if (proj && proj.demoNotice) {
+          const hideNotice = localStorage.getItem(`hide_demo_notice_${proj.id}`) === "true";
+          if (!hideNotice) {
+            e.preventDefault();
+            openDemoNoticeModal(proj, proj.demoUrl);
+          }
+        }
+      });
+    });
 
     return section;
   }
@@ -1156,15 +1231,19 @@
       if (linkEl) linkEl.href = `https://map.kakao.com/?q=${encodeURIComponent(config.schoolName)}`;
 
       if (typeof window.kakao === "undefined" || !window.kakao.maps) {
-        await new Promise((resolve, reject) => {
-          if (document.getElementById("kakao-map-sdk-script")) return resolve();
-          const script = document.createElement("script");
-          script.id = "kakao-map-sdk-script";
-          script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${config.mapApiKey}&autoload=false`;
-          script.onload = () => resolve();
-          script.onerror = (e) => reject(e);
-          document.head.appendChild(script);
-        });
+        try {
+          await new Promise((resolve, reject) => {
+            if (document.getElementById("kakao-map-sdk-script")) return resolve();
+            const script = document.createElement("script");
+            script.id = "kakao-map-sdk-script";
+            script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${config.mapApiKey}&autoload=false`;
+            script.onload = () => resolve();
+            script.onerror = (e) => reject(e);
+            document.head.appendChild(script);
+          });
+        } catch (err) {
+          console.warn("Kakao map SDK load fallback:", err);
+        }
       }
 
       const mapContainer = containerEl.querySelector("#kakao-school-map-bundle");

@@ -253,3 +253,28 @@ textarea.form-input {
   border-bottom: 1px solid var(--border-glass);
   padding: 16px 0;
 }
+
+/* --------------------------------------------------------------------------
+   7. 데모 접속 로딩 안내 팁 박스 (Demo Loading Notice)
+   -------------------------------------------------------------------------- */
+.demo-notice-box {
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.85), rgba(253, 230, 138, 0.6));
+  border: 1.5px dashed #F59E0B;
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.83rem;
+  color: #78350F;
+  line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+  transition: all var(--timing-normal);
+}
+
+.demo-notice-box:hover {
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.95), rgba(253, 230, 138, 0.8));
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.2);
+}
+

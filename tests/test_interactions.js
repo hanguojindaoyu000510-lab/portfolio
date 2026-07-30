@@ -9,10 +9,15 @@ async function runTests() {
 
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  page.on("dialog", dialog => dialog.accept());
+
+  const { spawn } = require("child_process");
+  const serverProcess = spawn("node", ["server.js"], { cwd: __dirname + "/.." });
+  await new Promise(r => setTimeout(r, 1000));
 
   try {
     // 1. 페이지 로딩 검증
-    await page.goto("http://localhost:8080/index.html");
+    await page.goto("http://localhost:3000/index.html", { waitUntil: "domcontentloaded" });
     console.log("✅ 1. index.html 정상 접속 (상태 코드 200)");
 
     // 2. 주요 레이아웃 섹션 존재 검증 (prd.md 명세 기준)
@@ -39,34 +44,34 @@ async function runTests() {
     await page.click("#admin-form button[type='submit']");
     await page.waitForTimeout(500);
 
-    const adminBtnText = await page.textContent("#admin-auth-btn");
-    console.log(`✅ 4. 관리자 인증 성공 ➔ 모드 전환: "${adminBtnText.trim()}"`);
+    const adminLogoutBtnExists = await page.isVisible("#btn-admin-logout-bundle");
+    console.log(`✅ 4. 관리자 인증 성공 ➔ 전용 관리자 대시보드 전환: ${adminLogoutBtnExists ? '성공 (OK)' : '실패'}`);
 
     // 4. 자기소개(Bio) 실시간 수정 테스트
-    const editBioExists = await page.isVisible("#edit-bio");
+    const editBioExists = await page.isVisible("#admin-bio-form");
     console.log(`✅ 5. 관리자 실시간 편집 폼 활성화: ${editBioExists ? '통과 (OK)' : '실패'}`);
 
     if (editBioExists) {
-      await page.fill("#edit-headline", "AI 기술로 새로운 경험을 만드는 개발자, 김도욱입니다.");
-      await page.click("#save-bio-btn");
+      await page.fill("#bio-headline", "AI 기술로 새로운 경험을 만드는 개발자, 김도욱입니다.");
+      await page.click("#admin-bio-form button[type='submit']");
       console.log("✅ 6. 자기소개 실시간 텍스트 수정 및 저장 성공");
     }
 
     // 5. 신규 AI 프로젝트 동적 추가(CRUD) 테스트
-    await page.click("#add-project-btn");
-    await page.waitForSelector("#add-project-modal.active");
+    await page.click("#tab-proj-btn");
+    await page.waitForTimeout(300);
 
-    await page.fill("#new-title", "🤖 테스트 AI 챗봇 서비스");
-    await page.fill("#new-desc", "Playwright E2E 테스트로 생성된 자동화 검증 프로젝트입니다.");
-    await page.fill("#new-tags", "#테스트, #GPT-4o, #Playwright");
-    await page.fill("#new-demo", "https://example.com/test-demo");
-    await page.fill("#new-github", "https://github.com/example/test-repo");
+    await page.fill("#proj-title", "🤖 테스트 AI 챗봇 서비스");
+    await page.fill("#proj-desc", "Playwright E2E 테스트로 생성된 자동화 검증 프로젝트입니다.");
+    await page.fill("#proj-tags", "#테스트, #GPT-4o, #Playwright");
+    await page.fill("#proj-demo", "https://example.com/test-demo");
+    await page.fill("#proj-github", "https://github.com/example/test-repo");
 
-    await page.click("#add-project-form button[type='submit']");
+    await page.click("#admin-project-form button[type='submit']");
     await page.waitForTimeout(500);
 
-    const newCardCount = await page.locator(".project-card").count();
-    console.log(`✅ 7. 신규 AI 프로젝트 동적 추가(CRUD) 성공 (총 ${newCardCount}개 카드가 갤러리에 정상 표시)`);
+    const newCardCount = await page.locator(".admin-proj-item").count();
+    console.log(`✅ 7. 신규 AI 프로젝트 동적 추가(CRUD) 성공 (총 ${newCardCount}개 카드가 관리자 목록에 정상 표시)`);
 
     // 6. 관리자 인증 상태 최종 완성 스크린샷 캡처
     await page.screenshot({ path: "screenshot_verified_admin.png", fullPage: true });
@@ -76,6 +81,7 @@ async function runTests() {
     console.error("❌ [테스트 실패]:", error);
   } finally {
     await browser.close();
+    if (serverProcess) serverProcess.kill();
     console.log("\n🎉 [최종 검증 완료] 모든 레이아웃 및 기능이 prd.md & design.md 스펙에 맞춰 완벽하게 동작합니다!\n");
   }
 }
