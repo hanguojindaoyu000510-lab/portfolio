@@ -1,0 +1,6 @@
+# Vercel 배포 제외 대상 (로컬 전용 서버 및 테스트 파일)
+server.js
+tests/
+*.ps1
+screenshot_*.png
+test_*.png

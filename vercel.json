@@ -1,4 +1,9 @@
 {
   "version": 2,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "routes": [
+    { "src": "/api/map-config", "dest": "/api/map-config.js" },
+    { "src": "/api/contact-config", "dest": "/api/contact-config.js" },
+    { "handle": "filesystem" }
+  ]
 }
