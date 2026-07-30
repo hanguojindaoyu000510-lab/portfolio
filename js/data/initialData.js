@@ -23,7 +23,7 @@ export const defaultData = {
       tags: ["#GPT-4o", "#JavaScript", "#Web Audio", "#CSS3"],
       demoUrl: "https://example.com/fortune",
       githubUrl: "https://github.com/example/fortune",
-      imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60"
+      imageUrl: "./assets/images/fortune_cookie_burst.png"
     },
     {
       id: 2,
@@ -78,6 +78,11 @@ export function getPortfolioData() {
   try {
     const data = JSON.parse(stored);
     if (data && data.projects) {
+      const p1 = data.projects.find(p => p.id === 1);
+      if (p1) {
+        p1.title = "🤖 AI 운세 쿠키 생성기";
+        p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
+      }
       const p2 = data.projects.find(p => p.id === 2);
       if (p2) {
         p2.title = "🎨 AI 캔버스 그림 해석기";
@@ -166,6 +171,11 @@ export async function fetchPortfolioDataFromSupabase() {
     }
 
     if (result.projects) {
+      const p1 = result.projects.find(p => p.id === 1);
+      if (p1) {
+        p1.title = "🤖 AI 운세 쿠키 생성기";
+        p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
+      }
       const p2 = result.projects.find(p => p.id === 2);
       if (p2) {
         p2.title = "🎨 AI 캔버스 그림 해석기";
