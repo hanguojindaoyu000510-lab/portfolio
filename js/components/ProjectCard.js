@@ -89,7 +89,7 @@ function renderSingleProjectCard(project, isAdmin) {
 
         <!-- 하단 링크 액션 버튼 -->
         <div style="display: flex; gap: 10px;">
-          <a href="${project.demoUrl}" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-primary btn-pill-sm" style="flex: 1;">
+          <a href="${project.demoUrl}" target="_self" class="btn-pill btn-pill-primary btn-pill-sm" style="flex: 1;">
             🐾 데모 접속
           </a>
           <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary btn-pill-sm">
