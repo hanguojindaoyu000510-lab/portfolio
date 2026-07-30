@@ -30,7 +30,14 @@
 }
 
 .cat-bounce {
+  display: inline-block;
   animation: catPawBounce 2.2s infinite ease-in-out;
+}
+
+/* 상단 헤더 및 다크 배경용 순백색(#FFFFFF) 발바닥 이모티콘 이펙트 */
+.paw-icon-white {
+  filter: brightness(0) invert(1);
+  display: inline-block;
 }
 
 /* 3. 회전 스카이 민트 빔 그라디언트 (Gradient Beam Effect) */
