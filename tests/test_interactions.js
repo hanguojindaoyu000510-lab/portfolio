@@ -93,6 +93,17 @@ async function runTests() {
         }
       });
     } catch (e) {}
+
+    try {
+      await fetch("https://bdurtdvmuaskcryqzzez.supabase.co/rest/v1/projects?title=ilike.*%ED%85%8C%EC%8A%A4%ED%8A%B8*", {
+        method: "DELETE",
+        headers: {
+          "apikey": "sb_publishable_M8nJwJwqRT6wWmhWDR0E7w_JYxWG0l_",
+          "Authorization": "Bearer sb_publishable_M8nJwJwqRT6wWmhWDR0E7w_JYxWG0l_"
+        }
+      });
+    } catch (e) {}
+
     await browser.close();
     if (serverProcess) serverProcess.kill();
     console.log("\n🎉 [최종 검증 완료] 모든 레이아웃 및 기능이 prd.md & design.md 스펙에 맞춰 완벽하게 동작합니다!\n");

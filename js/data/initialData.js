@@ -164,15 +164,17 @@ export async function fetchPortfolioDataFromSupabase() {
     }
 
     if (projectRows && projectRows.length > 0) {
-      result.projects = projectRows.map(row => ({
-        id: row.id,
-        title: row.title,
-        description: row.description,
-        tags: Array.isArray(row.tags) ? row.tags : [],
-        demoUrl: row.demo_url || "",
-        githubUrl: row.github_url || "",
-        imageUrl: row.image_url || ""
-      }));
+      result.projects = projectRows
+        .filter(row => !(row.title && row.title.includes("테스트 AI")))
+        .map(row => ({
+          id: row.id,
+          title: row.title,
+          description: row.description,
+          tags: Array.isArray(row.tags) ? row.tags : [],
+          demoUrl: row.demo_url || "",
+          githubUrl: row.github_url || "",
+          imageUrl: row.image_url || ""
+        }));
     }
 
     if (result.projects) {
@@ -189,6 +191,7 @@ export async function fetchPortfolioDataFromSupabase() {
         p2.tags = ["#VisionAI", "#Gemini", "#Canvas", "#React"];
         p2.demoUrl = "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true";
         p2.imageUrl = "./assets/images/anime_robot_canvas.png";
+        p2.demoNotice = "💡 접속 안내: Google AI Studio 환경 특성상 그림 캔버스가 뜨기까지 약 5~10초 정도 로딩 시간이 소요될 수 있습니다.";
       }
       const p3 = result.projects.find(p => p.id == 3 || (p.title && p.title.includes("창업")));
       if (p3) {
