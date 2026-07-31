@@ -43,6 +43,15 @@ export const defaultData = {
       demoUrl: "https://holymoly-orpin.vercel.app/",
       githubUrl: "https://github.com/example/startup-test",
       imageUrl: "./assets/images/startup_test_thumb.png"
+    },
+    {
+      id: 4,
+      title: "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)",
+      description: "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스",
+      tags: ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"],
+      demoUrl: "https://gesture-detection-ecru.vercel.app/",
+      githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
+      imageUrl: "./assets/images/posture_buddy_thumb.png"
     }
   ]
 };
@@ -102,6 +111,25 @@ export function getPortfolioData() {
         p3.tags = ["#Vite", "#React", "#Startup", "#Vercel"];
         p3.demoUrl = "https://holymoly-orpin.vercel.app/";
         p3.imageUrl = "./assets/images/startup_test_thumb.png";
+      }
+      const p4 = data.projects.find(p => p.id == 4 || (p.title && p.title.includes("자세")));
+      if (!p4) {
+        data.projects.push({
+          id: 4,
+          title: "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)",
+          description: "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스",
+          tags: ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"],
+          demoUrl: "https://gesture-detection-ecru.vercel.app/",
+          githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
+          imageUrl: "./assets/images/posture_buddy_thumb.png"
+        });
+      } else {
+        p4.title = "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)";
+        p4.description = "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스";
+        p4.tags = ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"];
+        p4.demoUrl = "https://gesture-detection-ecru.vercel.app/";
+        p4.githubUrl = "https://github.com/hanguojindaoyu000510-lab/gesture-detection";
+        p4.imageUrl = "./assets/images/posture_buddy_thumb.png";
       }
       savePortfolioData(data);
     }
