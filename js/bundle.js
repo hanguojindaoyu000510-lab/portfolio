@@ -51,7 +51,19 @@
         tags: ["#GPT-4o", "#JavaScript", "#Web Audio", "#CSS3"],
         demoUrl: "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html",
         githubUrl: "https://github.com/example/fortune",
-        imageUrl: "./assets/images/fortune_cookie_bu      {
+        imageUrl: "./assets/images/fortune_cookie_burst.png"
+      },
+      {
+        id: 2,
+        title: "🎨 AI 캔버스 그림 해석기",
+        description: "캔버스에 그린 그림과 이미지를 AI가 실시간으로 분석하고 심도 있게 해석해 주는 멀티모달 AI 서비스",
+        tags: ["#VisionAI", "#Gemini", "#Canvas", "#React"],
+        demoUrl: "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true",
+        githubUrl: "https://github.com/example/canvas-ai",
+        imageUrl: "./assets/images/anime_robot_canvas.png",
+        demoNotice: "💡 접속 안내: Google AI Studio 환경 특성상 그림 캔버스가 뜨기까지 약 5~10초 정도 로딩 시간이 소요될 수 있습니다."
+      },
+      {
         id: 3,
         title: "🎓 대학생 창업 성향 테스트하기!",
         description: "대학생들의 창업 성향과 잠재력을 다각도로 분석하여 맞춤형 창업 유형 및 가이드를 제공하는 테스트 웹 서비스",
@@ -62,9 +74,9 @@
       },
       {
         id: 4,
-        title: "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)",
-        description: "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스",
-        tags: ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"],
+        title: "🧘 AI 바른 자세 코치 친구 (Posture Buddy)",
+        description: "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스",
+        tags: ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"],
         demoUrl: "https://gesture-detection-ecru.vercel.app/",
         githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
         imageUrl: "./assets/images/posture_buddy_thumb.png"
@@ -107,40 +119,24 @@
           p3.demoUrl = "https://holymoly-orpin.vercel.app/";
           p3.imageUrl = "./assets/images/startup_test_thumb.png";
         }
-        const p4 = data.projects.find(p => p.id == 4 || (p.title && p.title.includes("자세")));
+        const p4 = data.projects.find(p => p.id == 4 || (p.title && (p.title.includes("자세") || p.title.includes("Posture"))));
         if (!p4) {
           data.projects.push({
             id: 4,
-            title: "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)",
-            description: "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스",
-            tags: ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"],
+            title: "🧘 AI 바른 자세 코치 친구 (Posture Buddy)",
+            description: "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스",
+            tags: ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"],
             demoUrl: "https://gesture-detection-ecru.vercel.app/",
             githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
             imageUrl: "./assets/images/posture_buddy_thumb.png"
           });
         } else {
-          p4.title = "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)";
-          p4.description = "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스";
-          p4.tags = ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"];
+          p4.title = "🧘 AI 바른 자세 코치 친구 (Posture Buddy)";
+          p4.description = "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스";
+          p4.tags = ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"];
           p4.demoUrl = "https://gesture-detection-ecru.vercel.app/";
           p4.githubUrl = "https://github.com/hanguojindaoyu000510-lab/gesture-detection";
           p4.imageUrl = "./assets/images/posture_buddy_thumb.png";
-        }
-        savePortfolioData(data);
-      }
-      return data;��지를 AI가 실시간으로 분석하고 심도 있게 해석해 주는 멀티모달 AI 서비스";
-          p2.tags = ["#VisionAI", "#Gemini", "#Canvas", "#React"];
-          p2.demoUrl = "https://ai.studio/apps/a6e6ef17-d596-4692-b76c-bd0169136f4a?fullscreenApplet=true";
-          p2.imageUrl = "./assets/images/anime_robot_canvas.png";
-          p2.demoNotice = "💡 접속 안내: Google AI Studio 환경 특성상 그림 캔버스가 뜨기까지 약 5~10초 정도 로딩 시간이 소요될 수 있습니다.";
-        }
-        const p3 = data.projects.find(p => p.id == 3 || (p.title && p.title.includes("창업")));
-        if (p3) {
-          p3.title = "🎓 대학생 창업 성향 테스트하기!";
-          p3.description = "대학생들의 창업 성향과 잠재력을 다각도로 분석하여 맞춤형 창업 유형 및 가이드를 제공하는 테스트 웹 서비스";
-          p3.tags = ["#Vite", "#React", "#Startup", "#Vercel"];
-          p3.demoUrl = "https://holymoly-orpin.vercel.app/";
-          p3.imageUrl = "./assets/images/startup_test_thumb.png";
         }
         savePortfolioData(data);
       }
@@ -229,6 +225,25 @@
           p3.tags = ["#Vite", "#React", "#Startup", "#Vercel"];
           p3.demoUrl = "https://holymoly-orpin.vercel.app/";
           p3.imageUrl = "./assets/images/startup_test_thumb.png";
+        }
+        const p4 = result.projects.find(p => p.id == 4 || (p.title && (p.title.includes("자세") || p.title.includes("Posture"))));
+        if (!p4) {
+          result.projects.push({
+            id: 4,
+            title: "🧘 AI 바른 자세 코치 친구 (Posture Buddy)",
+            description: "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스",
+            tags: ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"],
+            demoUrl: "https://gesture-detection-ecru.vercel.app/",
+            githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
+            imageUrl: "./assets/images/posture_buddy_thumb.png"
+          });
+        } else {
+          p4.title = "🧘 AI 바른 자세 코치 친구 (Posture Buddy)";
+          p4.description = "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스";
+          p4.tags = ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"];
+          p4.demoUrl = "https://gesture-detection-ecru.vercel.app/";
+          p4.githubUrl = "https://github.com/hanguojindaoyu000510-lab/gesture-detection";
+          p4.imageUrl = "./assets/images/posture_buddy_thumb.png";
         }
       }
       savePortfolioData(result);

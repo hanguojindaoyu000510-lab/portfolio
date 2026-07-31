@@ -13,7 +13,7 @@ export const defaultData = {
     headline: "AI 기술로 새로운 경험을 만드는 개발자, 김도욱입니다.",
     bio: "경기도 고양시에서 AI 트렌드를 탐구하며 사용자 중심의 최첨단 AI 웹사이트 및 앱 서비스를 개발하고 있습니다. 유용하고 감각적인 AI 경험을 선사하는 것이 저의 개발 목표입니다.",
     interests: ["AI 트렌드 연구", "AI 웹앱 개발", "서비스 런칭 & 데모"],
-    techStack: ["OpenAI API", "Python", "React", "Next.js", "Vite", "Vanilla JS", "Tailored CSS"]
+    techStack: ["OpenAI API", "MediaPipe AI", "Python", "React", "Next.js", "Vite", "Vanilla JS", "Web Serial API"]
   },
   projects: [
     {
@@ -46,9 +46,9 @@ export const defaultData = {
     },
     {
       id: 4,
-      title: "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)",
-      description: "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스",
-      tags: ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"],
+      title: "🧘 AI 바른 자세 코치 친구 (Posture Buddy)",
+      description: "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스",
+      tags: ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"],
       demoUrl: "https://gesture-detection-ecru.vercel.app/",
       githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
       imageUrl: "./assets/images/posture_buddy_thumb.png"
@@ -112,21 +112,21 @@ export function getPortfolioData() {
         p3.demoUrl = "https://holymoly-orpin.vercel.app/";
         p3.imageUrl = "./assets/images/startup_test_thumb.png";
       }
-      const p4 = data.projects.find(p => p.id == 4 || (p.title && p.title.includes("자세")));
+      const p4 = data.projects.find(p => p.id == 4 || (p.title && (p.title.includes("자세") || p.title.includes("Posture"))));
       if (!p4) {
         data.projects.push({
           id: 4,
-          title: "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)",
-          description: "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스",
-          tags: ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"],
+          title: "🧘 AI 바른 자세 코치 친구 (Posture Buddy)",
+          description: "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스",
+          tags: ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"],
           demoUrl: "https://gesture-detection-ecru.vercel.app/",
           githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
           imageUrl: "./assets/images/posture_buddy_thumb.png"
         });
       } else {
-        p4.title = "🧘 AI & 아두이노 자세 코치 친구 (Posture Buddy)";
-        p4.description = "웹캠 영상 기반 MediaPipe AI와 아두이노 네오픽셀 LED를 연동하여 공부하는 학생들의 올바른 자세 습관 형성을 돕는 스마트 IoT 헬스케어 서비스";
-        p4.tags = ["#MediaPipeAI", "#WebSerial", "#Arduino", "#IoT", "#VanillaJS"];
+        p4.title = "🧘 AI 바른 자세 코치 친구 (Posture Buddy)";
+        p4.description = "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스";
+        p4.tags = ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"];
         p4.demoUrl = "https://gesture-detection-ecru.vercel.app/";
         p4.githubUrl = "https://github.com/hanguojindaoyu000510-lab/gesture-detection";
         p4.imageUrl = "./assets/images/posture_buddy_thumb.png";
@@ -229,6 +229,25 @@ export async function fetchPortfolioDataFromSupabase() {
         p3.demoUrl = "https://holymoly-orpin.vercel.app/";
         p3.imageUrl = "./assets/images/startup_test_thumb.png";
       }
+      const p4 = result.projects.find(p => p.id == 4 || (p.title && (p.title.includes("자세") || p.title.includes("Posture"))));
+      if (!p4) {
+        result.projects.push({
+          id: 4,
+          title: "🧘 AI 바른 자세 코치 친구 (Posture Buddy)",
+          description: "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스",
+          tags: ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"],
+          demoUrl: "https://gesture-detection-ecru.vercel.app/",
+          githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
+          imageUrl: "./assets/images/posture_buddy_thumb.png"
+        });
+      } else {
+        p4.title = "🧘 AI 바른 자세 코치 친구 (Posture Buddy)";
+        p4.description = "웹캠으로 귀와 어깨 각도를 분석하여 바른 자세와 거북목을 판별하고, 아두이노 네오픽셀 LED로 실시간 코칭해 주는 친근한 IoT 웹 서비스";
+        p4.tags = ["#MediaPipe", "#Arduino", "#WebSerial", "#VanillaJS"];
+        p4.demoUrl = "https://gesture-detection-ecru.vercel.app/";
+        p4.githubUrl = "https://github.com/hanguojindaoyu000510-lab/gesture-detection";
+        p4.imageUrl = "./assets/images/posture_buddy_thumb.png";
+      }
     }
 
     savePortfolioData(result);
@@ -286,51 +305,19 @@ export async function addProjectToSupabase(newProject) {
     if (error) {
       console.error("Supabase 프로젝트 추가 오류:", error);
     } else if (data && data.length > 0) {
-      newProject.id = data[0].id;
+      const savedLocal = getPortfolioData();
+      savedLocal.projects.push({
+        id: data[0].id,
+        title: data[0].title,
+        description: data[0].description,
+        tags: data[0].tags,
+        demoUrl: data[0].demo_url,
+        githubUrl: data[0].github_url,
+        imageUrl: data[0].image_url
+      });
+      savePortfolioData(savedLocal);
     }
   } catch (err) {
     console.error("Supabase 프로젝트 추가 중 예외 발생:", err);
-  }
-}
-
-/**
- * Supabase DB 프로젝트 정보 수정
- */
-export async function updateProjectInSupabase(updatedProject) {
-  const client = getSupabaseClient();
-  if (!client) return;
-
-  try {
-    const payload = {
-      title: updatedProject.title,
-      description: updatedProject.description,
-      tags: updatedProject.tags,
-      demo_url: updatedProject.demoUrl,
-      github_url: updatedProject.githubUrl,
-      image_url: updatedProject.imageUrl
-    };
-    const { error } = await client.from("projects").update(payload).eq("id", updatedProject.id);
-    if (error) {
-      console.error("Supabase 프로젝트 수정 오류:", error);
-    }
-  } catch (err) {
-    console.error("Supabase 프로젝트 수정 중 예외 발생:", err);
-  }
-}
-
-/**
- * Supabase DB 프로젝트 삭제
- */
-export async function deleteProjectFromSupabase(id) {
-  const client = getSupabaseClient();
-  if (!client) return;
-
-  try {
-    const { error } = await client.from("projects").delete().eq("id", id);
-    if (error) {
-      console.error("Supabase 프로젝트 삭제 오류:", error);
-    }
-  } catch (err) {
-    console.error("Supabase 프로젝트 삭제 중 예외 발생:", err);
   }
 }
