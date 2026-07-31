@@ -62,6 +62,15 @@ export const defaultData = {
       demoUrl: "https://smart-mirror-two.vercel.app/",
       githubUrl: "https://github.com/hanguojindaoyu000510-lab/smart-mirror",
       imageUrl: "./assets/images/smart_mirror_thumb.png"
+    },
+    {
+      id: 6,
+      title: "🔌 Web Serial 통신 테스트 (Web Serial Test)",
+      description: "웹 브라우저에서 Web Serial API를 활용해 아두이노 및 블루투스(HC-06) 시리얼 기기와 실시간 데이터 송수신 및 디바이스 상태를 제어하는 IoT 통신 테스트 웹 서비스",
+      tags: ["#WebSerial", "#Arduino", "#HC-06", "#Bluetooth", "#VanillaJS"],
+      demoUrl: "https://web-serial-test.vercel.app/",
+      githubUrl: "https://github.com/hanguojindaoyu000510-lab/web-serial-test",
+      imageUrl: "./assets/images/web_serial_thumb.png"
     }
   ]
 };
@@ -160,6 +169,25 @@ export function getPortfolioData() {
         p5.demoUrl = "https://smart-mirror-two.vercel.app/";
         p5.githubUrl = "https://github.com/hanguojindaoyu000510-lab/smart-mirror";
         p5.imageUrl = "./assets/images/smart_mirror_thumb.png";
+      }
+      const p6 = data.projects.find(p => p.id == 6 || (p.title && (p.title.includes("Serial") || p.title.includes("시리얼"))));
+      if (!p6) {
+        data.projects.push({
+          id: 6,
+          title: "🔌 Web Serial 통신 테스트 (Web Serial Test)",
+          description: "웹 브라우저에서 Web Serial API를 활용해 아두이노 및 블루투스(HC-06) 시리얼 기기와 실시간 데이터 송수신 및 디바이스 상태를 제어하는 IoT 통신 테스트 웹 서비스",
+          tags: ["#WebSerial", "#Arduino", "#HC-06", "#Bluetooth", "#VanillaJS"],
+          demoUrl: "https://web-serial-test.vercel.app/",
+          githubUrl: "https://github.com/hanguojindaoyu000510-lab/web-serial-test",
+          imageUrl: "./assets/images/web_serial_thumb.png"
+        });
+      } else {
+        p6.title = "🔌 Web Serial 통신 테스트 (Web Serial Test)";
+        p6.description = "웹 브라우저에서 Web Serial API를 활용해 아두이노 및 블루투스(HC-06) 시리얼 기기와 실시간 데이터 송수신 및 디바이스 상태를 제어하는 IoT 통신 테스트 웹 서비스";
+        p6.tags = ["#WebSerial", "#Arduino", "#HC-06", "#Bluetooth", "#VanillaJS"];
+        p6.demoUrl = "https://web-serial-test.vercel.app/";
+        p6.githubUrl = "https://github.com/hanguojindaoyu000510-lab/web-serial-test";
+        p6.imageUrl = "./assets/images/web_serial_thumb.png";
       }
       savePortfolioData(data);
     }
@@ -297,6 +325,25 @@ export async function fetchPortfolioDataFromSupabase() {
         p5.demoUrl = "https://smart-mirror-two.vercel.app/";
         p5.githubUrl = "https://github.com/hanguojindaoyu000510-lab/smart-mirror";
         p5.imageUrl = "./assets/images/smart_mirror_thumb.png";
+      }
+      const p6 = result.projects.find(p => p.id == 6 || (p.title && (p.title.includes("Serial") || p.title.includes("시리얼"))));
+      if (!p6) {
+        result.projects.push({
+          id: 6,
+          title: "🔌 Web Serial 통신 테스트 (Web Serial Test)",
+          description: "웹 브라우저에서 Web Serial API를 활용해 아두이노 및 블루투스(HC-06) 시리얼 기기와 실시간 데이터 송수신 및 디바이스 상태를 제어하는 IoT 통신 테스트 웹 서비스",
+          tags: ["#WebSerial", "#Arduino", "#HC-06", "#Bluetooth", "#VanillaJS"],
+          demoUrl: "https://web-serial-test.vercel.app/",
+          githubUrl: "https://github.com/hanguojindaoyu000510-lab/web-serial-test",
+          imageUrl: "./assets/images/web_serial_thumb.png"
+        });
+      } else {
+        p6.title = "🔌 Web Serial 통신 테스트 (Web Serial Test)";
+        p6.description = "웹 브라우저에서 Web Serial API를 활용해 아두이노 및 블루투스(HC-06) 시리얼 기기와 실시간 데이터 송수신 및 디바이스 상태를 제어하는 IoT 통신 테스트 웹 서비스";
+        p6.tags = ["#WebSerial", "#Arduino", "#HC-06", "#Bluetooth", "#VanillaJS"];
+        p6.demoUrl = "https://web-serial-test.vercel.app/";
+        p6.githubUrl = "https://github.com/hanguojindaoyu000510-lab/web-serial-test";
+        p6.imageUrl = "./assets/images/web_serial_thumb.png";
       }
       savePortfolioData(result);
     }
