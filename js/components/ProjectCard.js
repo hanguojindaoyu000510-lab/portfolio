@@ -121,6 +121,8 @@ export function renderProjectsSection(projects, isAdmin, onAddProject, onDeleteP
  * 개별 프로젝트 카드 HTML 생성 헬퍼 함수
  */
 function renderSingleProjectCard(project, isAdmin) {
+  const localUrl = project.localDemoUrl || ((project.id == 1 || (project.title && project.title.includes("운세")) || (project.demoUrl && project.demoUrl.includes("fortune-cookie"))) ? "http://localhost:8085/" : null);
+
   return `
     <div class="glass-card project-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
       <div>
@@ -164,10 +166,10 @@ function renderSingleProjectCard(project, isAdmin) {
         <!-- 하단 링크 액션 버튼 -->
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
           <a href="${project.demoUrl}" target="_blank" data-id="${project.id}" class="demo-access-btn btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; min-width: 100px; text-align: center; text-decoration: none;">
-            🐾 라이브 데모
+            🐾 데모 접속
           </a>
-          ${project.localDemoUrl ? `
-            <a href="${project.localDemoUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;" title="로컬 테스트 환경 (http://localhost:8085/)">
+          ${localUrl ? `
+            <a href="${localUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;" title="로컬 테스트 환경 (http://localhost:8085/)">
               🏠 로컬 접속 (8085)
             </a>
           ` : ''}

@@ -596,7 +596,9 @@
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
-          ${projects.map(p => `
+          ${projects.map(p => {
+            const localUrl = p.localDemoUrl || ((p.id == 1 || (p.title && p.title.includes("운세")) || (p.demoUrl && p.demoUrl.includes("fortune-cookie"))) ? "http://localhost:8085/" : null);
+            return `
             <div class="glass-card project-card" style="display: flex; flex-direction: column; justify-content: space-between;">
               <div>
                 <div style="height: 190px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; border: 1.5px solid var(--border-glass); box-shadow: 0 6px 16px rgba(186, 230, 253, 0.15);">
@@ -618,12 +620,13 @@
                 ` : ''}
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <a href="${p.demoUrl}" target="_blank" data-id="${p.id}" class="demo-access-btn btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; min-width: 100px; text-align: center; text-decoration: none;">🐾 라이브 데모</a>
-                ${p.localDemoUrl ? `<a href="${p.localDemoUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;" title="로컬 테스트 환경 (http://localhost:8085/)">🏠 로컬 접속 (8085)</a>` : ''}
+                <a href="${p.demoUrl}" target="_blank" data-id="${p.id}" class="demo-access-btn btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; min-width: 100px; text-align: center; text-decoration: none;">🐾 데모 접속</a>
+                ${localUrl ? `<a href="${localUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;" title="로컬 테스트 환경 (http://localhost:8085/)">🏠 로컬 접속 (8085)</a>` : ''}
                 <a href="${p.githubUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;">💻 Github</a>
               </div>
             </div>
-          `).join('')}
+          `;
+          }).join('')}
         </div>
       </div>
     `;
