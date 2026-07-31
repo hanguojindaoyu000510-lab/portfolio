@@ -11,15 +11,14 @@ async function runTests() {
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   page.on("dialog", dialog => dialog.accept());
 
-  const { spawn } = require("child_process");
-  const serverProcess = spawn("node", ["server.js"], { cwd: __dirname + "/.." });
-  await new Promise(r => setTimeout(r, 1000));
+  const path = require("path");
+  const htmlPath = "file:///" + path.resolve(__dirname, "../index.html").replace(/\\/g, "/");
 
   try {
     // 1. 페이지 로딩 검증
-    await page.goto("http://localhost:3000/index.html", { waitUntil: "domcontentloaded" });
+    await page.goto(htmlPath);
     await page.waitForSelector(".header-nav");
-    console.log("✅ 1. index.html 정상 접속 (상태 코드 200)");
+    console.log(`✅ 1. index.html 정상 로드 완료: ${htmlPath}`);
 
     // 2. 주요 레이아웃 섹션 존재 검증 (prd.md 명세 기준)
     const headerExists = await page.isVisible(".header-nav");
@@ -106,7 +105,6 @@ async function runTests() {
     } catch (e) {}
 
     await browser.close();
-    if (serverProcess) serverProcess.kill();
     console.log("\n🎉 [최종 검증 완료] 모든 레이아웃 및 기능이 prd.md & design.md 스펙에 맞춰 완벽하게 동작합니다!\n");
   }
 }
