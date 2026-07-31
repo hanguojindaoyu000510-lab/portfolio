@@ -22,6 +22,7 @@ export const defaultData = {
       description: "오늘의 운세와 용기를 북돋아 주는 격언을 Generative AI가 맞춤 생성해 주는 웹 서비스",
       tags: ["#GPT-4o", "#JavaScript", "#Web Audio", "#CSS3"],
       demoUrl: "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html",
+      localDemoUrl: "http://localhost:8085/",
       githubUrl: "https://github.com/example/fortune",
       imageUrl: "./assets/images/fortune_cookie_burst.png"
     },
@@ -102,6 +103,7 @@ export function getPortfolioData() {
       if (p1) {
         p1.title = "🤖 AI 운세 쿠키 생성기";
         p1.demoUrl = "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html";
+        p1.localDemoUrl = "http://localhost:8085/";
         p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
       }
       const p2 = data.projects.find(p => p.id == 2 || (p.title && p.title.includes("캔버스")));
@@ -238,6 +240,7 @@ export async function fetchPortfolioDataFromSupabase() {
       if (p1) {
         p1.title = "🤖 AI 운세 쿠키 생성기";
         p1.demoUrl = "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html";
+        p1.localDemoUrl = "http://localhost:8085/";
         p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
       }
       const p2 = result.projects.find(p => p.id == 2 || (p.title && p.title.includes("캔버스")));

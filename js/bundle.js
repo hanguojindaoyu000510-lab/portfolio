@@ -50,6 +50,7 @@
         description: "오늘의 운세와 용기를 북돋아 주는 격언을 Generative AI가 맞춤 생성해 주는 웹 서비스",
         tags: ["#GPT-4o", "#JavaScript", "#Web Audio", "#CSS3"],
         demoUrl: "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html",
+        localDemoUrl: "http://localhost:8085/",
         githubUrl: "https://github.com/example/fortune",
         imageUrl: "./assets/images/fortune_cookie_burst.png"
       },
@@ -109,6 +110,7 @@
         if (p1) {
           p1.title = "🤖 AI 운세 쿠키 생성기";
           p1.demoUrl = "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html";
+          p1.localDemoUrl = "http://localhost:8085/";
           p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
         }
         const p2 = data.projects.find(p => p.id == 2 || (p.title && p.title.includes("캔버스")));
@@ -235,6 +237,7 @@
         if (p1) {
           p1.title = "🤖 AI 운세 쿠키 생성기";
           p1.demoUrl = "https://portfolio-1-zeta-lime.vercel.app/fortune-cookie/index.html";
+          p1.localDemoUrl = "http://localhost:8085/";
           p1.imageUrl = "./assets/images/fortune_cookie_burst.png";
         }
         const p2 = result.projects.find(p => p.id == 2 || (p.title && p.title.includes("캔버스")));
@@ -392,7 +395,7 @@
       <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
         <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; text-decoration: none;">
           <span style="font-size: 1.3rem; filter: brightness(0) invert(1);" class="cat-bounce paw-icon-white">🐾</span>
-          <span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DOWOOK.AI</span>
+          <span style="background: var(--grad-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DOWOOK.AI</span>
           <span style="font-size: 1.2rem;">🐱</span>
         </a>
         <nav style="display: flex; align-items: center; gap: 10px;">
@@ -435,7 +438,7 @@
               </span>
             </div>
             <h1 style="font-size: var(--fs-hero); font-weight: 800; color: var(--text-main); line-height: 1.3; margin-bottom: 20px; word-break: keep-all;">
-              AI 기술로 시원하고 스마트한<br/>경험을 만드는 <span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">김도욱</span>입니다 🐾
+              AI 기술로 시원하고 스마트한<br/>경험을 만드는 <span style="background: var(--grad-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">김도욱</span>입니다 🐾
             </h1>
             <p style="font-size: var(--fs-body-lg); color: var(--text-muted); max-width: 580px; margin: 0 0 36px 0; line-height: 1.7;">
               유용하고 감각적인 AI 서비스를 개발하고 사용자와 함께 소통해 나갑니다.
@@ -614,8 +617,9 @@
                   </div>
                 ` : ''}
               </div>
-              <div style="display: flex; gap: 10px;">
-                <a href="${p.demoUrl}" target="_blank" data-id="${p.id}" class="demo-access-btn btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; text-align: center; text-decoration: none;">🐾 데모 접속</a>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <a href="${p.demoUrl}" target="_blank" data-id="${p.id}" class="demo-access-btn btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; min-width: 100px; text-align: center; text-decoration: none;">🐾 라이브 데모</a>
+                ${p.localDemoUrl ? `<a href="${p.localDemoUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;" title="로컬 테스트 환경 (http://localhost:8085/)">🏠 로컬 접속 (8085)</a>` : ''}
                 <a href="${p.githubUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;">💻 Github</a>
               </div>
             </div>

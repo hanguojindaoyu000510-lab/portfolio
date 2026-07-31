@@ -114,6 +114,7 @@ body {
 
 .gradient-text {
   background: var(--grad-primary);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

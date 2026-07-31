@@ -18,6 +18,7 @@ async function runTests() {
   try {
     // 1. 페이지 로딩 검증
     await page.goto("http://localhost:3000/index.html", { waitUntil: "domcontentloaded" });
+    await page.waitForSelector(".header-nav");
     console.log("✅ 1. index.html 정상 접속 (상태 코드 200)");
 
     // 2. 주요 레이아웃 섹션 존재 검증 (prd.md 명세 기준)

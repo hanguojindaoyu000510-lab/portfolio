@@ -26,7 +26,7 @@ export function renderHero(profileData) {
           <!-- 메인 헤드라인 타이틀 -->
           <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; line-height: 1.3; margin-bottom: 20px; letter-spacing: -0.02em; color: var(--text-main);">
             AI 기술로 시원하고 스마트한<br/>
-            경험을 만드는 <span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">김도욱</span>입니다 🐾
+            경험을 만드는 <span style="background: var(--grad-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">김도욱</span>입니다 🐾
           </h1>
 
           <!-- 세부 타이틀 및 설명 -->

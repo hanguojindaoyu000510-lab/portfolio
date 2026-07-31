@@ -29,7 +29,7 @@ export function renderHeader(isAdmin, currentView, onAdminClick, onGoAdminConsol
       <!-- 귀여운 고양이 브랜드 로고 -->
       <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; text-decoration: none;">
         <span style="font-size: 1.3rem; filter: brightness(0) invert(1);" class="cat-bounce paw-icon-white">🐾</span>
-        <span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DOWOOK.AI</span>
+        <span style="background: var(--grad-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DOWOOK.AI</span>
         <span style="font-size: 1.2rem;">🐱</span>
       </a>
 

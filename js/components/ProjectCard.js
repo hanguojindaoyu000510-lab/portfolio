@@ -162,10 +162,15 @@ function renderSingleProjectCard(project, isAdmin) {
         </div>
 
         <!-- 하단 링크 액션 버튼 -->
-        <div style="display: flex; gap: 10px;">
-          <a href="${project.demoUrl}" target="_blank" data-id="${project.id}" class="demo-access-btn btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; text-align: center; text-decoration: none;">
-            🐾 데모 접속
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <a href="${project.demoUrl}" target="_blank" data-id="${project.id}" class="demo-access-btn btn-pill btn-pill-primary btn-pill-sm" style="flex: 1; min-width: 100px; text-align: center; text-decoration: none;">
+            🐾 라이브 데모
           </a>
+          ${project.localDemoUrl ? `
+            <a href="${project.localDemoUrl}" target="_blank" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;" title="로컬 테스트 환경 (http://localhost:8085/)">
+              🏠 로컬 접속 (8085)
+            </a>
+          ` : ''}
           <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary btn-pill-sm" style="text-decoration: none;">
             💻 Github
           </a>
