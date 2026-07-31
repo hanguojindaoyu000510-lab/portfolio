@@ -52,6 +52,15 @@ export const defaultData = {
       demoUrl: "https://gesture-detection-ecru.vercel.app/",
       githubUrl: "https://github.com/hanguojindaoyu000510-lab/gesture-detection",
       imageUrl: "./assets/images/posture_buddy_thumb.png"
+    },
+    {
+      id: 5,
+      title: "🪞 AI 스마트 거울 비서 (Smart Mirror)",
+      description: "초음파 센서 접근 감지와 실시간 날씨 정보를 바탕으로 웹캠으로 촬영한 옷차림을 Gemini AI가 분석하고 아두이노 부품(도트매트릭스/네오픽셀/피에조부저)과 인터랙티브 연동되는 IoT 스마트 거울 서비스",
+      tags: ["#GeminiAI", "#Arduino", "#WebSerial", "#OpenWeatherMap", "#VanillaJS"],
+      demoUrl: "https://smart-mirror-two.vercel.app/",
+      githubUrl: "https://github.com/hanguojindaoyu000510-lab/smart-mirror",
+      imageUrl: "./assets/images/smart_mirror_thumb.png"
     }
   ]
 };
@@ -130,6 +139,25 @@ export function getPortfolioData() {
         p4.demoUrl = "https://gesture-detection-ecru.vercel.app/";
         p4.githubUrl = "https://github.com/hanguojindaoyu000510-lab/gesture-detection";
         p4.imageUrl = "./assets/images/posture_buddy_thumb.png";
+      }
+      const p5 = data.projects.find(p => p.id == 5 || (p.title && (p.title.includes("거울") || p.title.includes("Mirror"))));
+      if (!p5) {
+        data.projects.push({
+          id: 5,
+          title: "🪞 AI 스마트 거울 비서 (Smart Mirror)",
+          description: "초음파 센서 접근 감지와 실시간 날씨 정보를 바탕으로 웹캠으로 촬영한 옷차림을 Gemini AI가 분석하고 아두이노 부품(도트매트릭스/네오픽셀/피에조부저)과 인터랙티브 연동되는 IoT 스마트 거울 서비스",
+          tags: ["#GeminiAI", "#Arduino", "#WebSerial", "#OpenWeatherMap", "#VanillaJS"],
+          demoUrl: "https://smart-mirror-two.vercel.app/",
+          githubUrl: "https://github.com/hanguojindaoyu000510-lab/smart-mirror",
+          imageUrl: "./assets/images/smart_mirror_thumb.png"
+        });
+      } else {
+        p5.title = "🪞 AI 스마트 거울 비서 (Smart Mirror)";
+        p5.description = "초음파 센서 접근 감지와 실시간 날씨 정보를 바탕으로 웹캠으로 촬영한 옷차림을 Gemini AI가 분석하고 아두이노 부품(도트매트릭스/네오픽셀/피에조부저)과 인터랙티브 연동되는 IoT 스마트 거울 서비스";
+        p5.tags = ["#GeminiAI", "#Arduino", "#WebSerial", "#OpenWeatherMap", "#VanillaJS"];
+        p5.demoUrl = "https://smart-mirror-two.vercel.app/";
+        p5.githubUrl = "https://github.com/hanguojindaoyu000510-lab/smart-mirror";
+        p5.imageUrl = "./assets/images/smart_mirror_thumb.png";
       }
       savePortfolioData(data);
     }
@@ -248,9 +276,27 @@ export async function fetchPortfolioDataFromSupabase() {
         p4.githubUrl = "https://github.com/hanguojindaoyu000510-lab/gesture-detection";
         p4.imageUrl = "./assets/images/posture_buddy_thumb.png";
       }
+      const p5 = result.projects.find(p => p.id == 5 || (p.title && (p.title.includes("거울") || p.title.includes("Mirror"))));
+      if (!p5) {
+        result.projects.push({
+          id: 5,
+          title: "🪞 AI 스마트 거울 비서 (Smart Mirror)",
+          description: "초음파 센서 접근 감지와 실시간 날씨 정보를 바탕으로 웹캠으로 촬영한 옷차림을 Gemini AI가 분석하고 아두이노 부품(도트매트릭스/네오픽셀/피에조부저)과 인터랙티브 연동되는 IoT 스마트 거울 서비스",
+          tags: ["#GeminiAI", "#Arduino", "#WebSerial", "#OpenWeatherMap", "#VanillaJS"],
+          demoUrl: "https://smart-mirror-two.vercel.app/",
+          githubUrl: "https://github.com/hanguojindaoyu000510-lab/smart-mirror",
+          imageUrl: "./assets/images/smart_mirror_thumb.png"
+        });
+      } else {
+        p5.title = "🪞 AI 스마트 거울 비서 (Smart Mirror)";
+        p5.description = "초음파 센서 접근 감지와 실시간 날씨 정보를 바탕으로 웹캠으로 촬영한 옷차림을 Gemini AI가 분석하고 아두이노 부품(도트매트릭스/네오픽셀/피에조부저)과 인터랙티브 연동되는 IoT 스마트 거울 서비스";
+        p5.tags = ["#GeminiAI", "#Arduino", "#WebSerial", "#OpenWeatherMap", "#VanillaJS"];
+        p5.demoUrl = "https://smart-mirror-two.vercel.app/";
+        p5.githubUrl = "https://github.com/hanguojindaoyu000510-lab/smart-mirror";
+        p5.imageUrl = "./assets/images/smart_mirror_thumb.png";
+      }
+      savePortfolioData(result);
     }
-
-    savePortfolioData(result);
     return result;
   } catch (err) {
     console.error("Supabase 데이터 로드 중 예외 발생:", err);
