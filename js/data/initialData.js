@@ -71,6 +71,15 @@ export const defaultData = {
       demoUrl: "https://web-serial-test.vercel.app/",
       githubUrl: "https://github.com/hanguojindaoyu000510-lab/web-serial-test",
       imageUrl: "./assets/images/web_serial_thumb.png"
+    },
+    {
+      id: 7,
+      title: "♻️ AI 스마트 분리수거 비서 (AI Recycle Coach)",
+      description: "웹캠으로 촬영한 쓰레기 이미지를 Gemini Vision AI가 실시간 정밀 분석하여 분리수거 카테고리(플라스틱/종이/캔/일반쓰레기), 세척 필요 여부, 이물질/라벨 제거 요령 및 아두이노(도트매트릭스/네오픽셀/피에조부저/서보모터) 5종 부품 제어 가이드를 제공하는 자취생 맞춤 AIoT 웹 서비스",
+      tags: ["#GeminiAI", "#Arduino", "#WebSerial", "#VisionAI", "#VanillaJS"],
+      demoUrl: "https://ai-recycle-coach.vercel.app/",
+      githubUrl: "https://github.com/hanguojindaoyu000510-lab/ai-recycle-coach",
+      imageUrl: "./assets/images/ai_recycle_coach_thumb.png"
     }
   ]
 };
@@ -344,6 +353,25 @@ export async function fetchPortfolioDataFromSupabase() {
         p6.demoUrl = "https://web-serial-test.vercel.app/";
         p6.githubUrl = "https://github.com/hanguojindaoyu000510-lab/web-serial-test";
         p6.imageUrl = "./assets/images/web_serial_thumb.png";
+      }
+      const p7 = result.projects.find(p => p.id == 7 || (p.title && (p.title.includes("분리수거") || p.title.includes("Recycle"))));
+      if (!p7) {
+        result.projects.push({
+          id: 7,
+          title: "♻️ AI 스마트 분리수거 비서 (AI Recycle Coach)",
+          description: "웹캠으로 촬영한 쓰레기 이미지를 Gemini Vision AI가 실시간 정밀 분석하여 분리수거 카테고리(플라스틱/종이/캔/일반쓰레기), 세척 필요 여부, 이물질/라벨 제거 요령 및 아두이노(도트매트릭스/네오픽셀/피에조부저/서보모터) 5종 부품 제어 가이드를 제공하는 자취생 맞춤 AIoT 웹 서비스",
+          tags: ["#GeminiAI", "#Arduino", "#WebSerial", "#VisionAI", "#VanillaJS"],
+          demoUrl: "https://ai-recycle-coach.vercel.app/",
+          githubUrl: "https://github.com/hanguojindaoyu000510-lab/ai-recycle-coach",
+          imageUrl: "./assets/images/ai_recycle_coach_thumb.png"
+        });
+      } else {
+        p7.title = "♻️ AI 스마트 분리수거 비서 (AI Recycle Coach)";
+        p7.description = "웹캠으로 촬영한 쓰레기 이미지를 Gemini Vision AI가 실시간 정밀 분석하여 분리수거 카테고리(플라스틱/종이/캔/일반쓰레기), 세척 필요 여부, 이물질/라벨 제거 요령 및 아두이노(도트매트릭스/네오픽셀/피에조부저/서보모터) 5종 부품 제어 가이드를 제공하는 자취생 맞춤 AIoT 웹 서비스";
+        p7.tags = ["#GeminiAI", "#Arduino", "#WebSerial", "#VisionAI", "#VanillaJS"];
+        p7.demoUrl = "https://ai-recycle-coach.vercel.app/";
+        p7.githubUrl = "https://github.com/hanguojindaoyu000510-lab/ai-recycle-coach";
+        p7.imageUrl = "./assets/images/ai_recycle_coach_thumb.png";
       }
       savePortfolioData(result);
     }
